@@ -118,25 +118,28 @@ function questionAsync(query) {
                             console.error("引数4が指定した変数の場所は0未満です。")
                         }else{
                             if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                                //true
                                 if((vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
                                 }else{
                                     i=vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2
                                 }
                             }else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
-                                
+                                //false
                                 if((vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
                                 }else{
                                     i=vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2
                                 }
                             }else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]==vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                                //true
                                 if((vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
                                 }else{
                                     i=vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2
                                 }
                             }else{
+                                //false
                                 if((vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
                                 }else{
@@ -147,15 +150,17 @@ function questionAsync(query) {
                     }else{
                         //引数4がない場合
                         if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                            //true
                             if((vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                             console.error("ジャンプ先が1未満の場所です")
                             }else{
                                 i=vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2
                             }
                         }else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
-
+                            //false
                         }
                         else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]==vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                            //true
                             if((vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                             console.error("ジャンプ先が1未満の場所です")
                             }else{
@@ -165,23 +170,62 @@ function questionAsync(query) {
                     }
                 }else if(query[0][2]==6){
                     //条件ジャンプ
-                    if(((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)<0){
+                    /*変数がundefinedの場合の処理
+                        なし<なし
+                        数値<なし
+                        なし<数値
+                        数値<数値
+                        の場合
+                    */
+                    if(query[1]==undefined){
+                        console.error("変数1が指定されていません")
+                    }else if(query[2]==undefined){
+                        console.error("指定2が指定されていません")
+                    }else if(query[3]==undefined){
+                        console.error("指定3が指定されていません")
+                    }else if(isNaN((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)){
+                        console.error("引数1は日付形式以外は指定できません")
+                    }else if(isNaN((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)){
+                        console.error("引数2は日付形式以外は指定できません")
+                    }else if(isNaN((new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000)){
+                        console.error("引数3は日付形式以外は指定できません")
+                    }else if(((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)<0){
                         console.error("引数1が指定した変数の場所は0未満の場所です")
                     }else if(((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)<0){
                         console.error("引数2が指定した変数の場所は0未満の場所です")
                     }else if(((new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000)<0){
                         console.error("引数3が指定した変数の場所は0未満の場所です")
                     }else if(query[4]!=undefined){
-                        if(((new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000)<0){
+                        //引数4がある場合
+                        if(isNaN((new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000)){
+                        console.error("引数4は日付形式以外は指定できません")
+                        }
+                        else if(((new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000)<0){
                             console.error("引数4が指定した変数の場所は0未満です。")
                         }else{
-                            if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]<vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                            if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                                //false
+                                if((vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
+                                console.error("ジャンプ先が1未満の場所です")
+                                }else{
+                                    i=vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2
+                                }
+                            }else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                                //false
+                                if((vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
+                                console.error("ジャンプ先が1未満の場所です")
+                                }else{
+                                    i=vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2
+                                }
+                            }else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]<vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                                //true
                                 if((vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
                                 }else{
                                     i=vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2
                                 }
                             }else{
+                                //false
                                 if((vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
                                 }else{
@@ -190,7 +234,14 @@ function questionAsync(query) {
                             }
                         }
                     }else{
-                        if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]<vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                        //引数4がない場合
+                        if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                            //false
+                        }else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                            //false
+                        }
+                        else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]<vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                            //true
                             if((vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                             console.error("ジャンプ先が1未満の場所です")
                             }else{
@@ -198,26 +249,66 @@ function questionAsync(query) {
                             }
                         }
                     }
-                    
+
                 }else if(query[0][2]==7){
+                    
                     //条件ジャンプ
-                    if(((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)<0){
+                    /*変数がundefinedの場合の処理
+                        なし>なし
+                        数値>なし
+                        なし>数値
+                        数値>数値
+                        の場合
+                    */
+                    if(query[1]==undefined){
+                        console.error("変数1が指定されていません")
+                    }else if(query[2]==undefined){
+                        console.error("指定2が指定されていません")
+                    }else if(query[3]==undefined){
+                        console.error("指定3が指定されていません")
+                    }else if(isNaN((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)){
+                        console.error("引数1は日付形式以外は指定できません")
+                    }else if(isNaN((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)){
+                        console.error("引数2は日付形式以外は指定できません")
+                    }else if(isNaN((new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000)){
+                        console.error("引数3は日付形式以外は指定できません")
+                    }else if(((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)<0){
                         console.error("引数1が指定した変数の場所は0未満の場所です")
                     }else if(((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)<0){
                         console.error("引数2が指定した変数の場所は0未満の場所です")
                     }else if(((new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000)<0){
                         console.error("引数3が指定した変数の場所は0未満の場所です")
                     }else if(query[4]!=undefined){
-                        if(((new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000)<0){
+                        //引数4がある場合
+                        if(isNaN((new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000)){
+                        console.error("引数4は日付形式以外は指定できません")
+                        }
+                        else if(((new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000)<0){
                             console.error("引数4が指定した変数の場所は0未満です。")
                         }else{
-                            if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]>vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                            if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                                //false
+                                if((vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
+                                console.error("ジャンプ先が1未満の場所です")
+                                }else{
+                                    i=vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2
+                                }
+                            }else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                                //false
+                                if((vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
+                                console.error("ジャンプ先が1未満の場所です")
+                                }else{
+                                    i=vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2
+                                }
+                            }else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]>vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                                //true
                                 if((vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
                                 }else{
                                     i=vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2
                                 }
                             }else{
+                                //false
                                 if((vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
                                 }else{
@@ -226,7 +317,14 @@ function questionAsync(query) {
                             }
                         }
                     }else{
-                        if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]>vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                        //引数4がない場合
+                        if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                            //false
+                        }else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                            //false
+                        }
+                        else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]>vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                            //true
                             if((vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                             console.error("ジャンプ先が1未満の場所です")
                             }else{
@@ -237,23 +335,62 @@ function questionAsync(query) {
                     
                 }else if(query[0][2]==8){
                     //条件ジャンプ
-                    if(((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)<0){
+                    /*変数がundefinedの場合の処理
+                        なし<=なし
+                        数値<=なし
+                        なし<=数値
+                        数値<=数値
+                        の場合
+                    */
+                    if(query[1]==undefined){
+                        console.error("変数1が指定されていません")
+                    }else if(query[2]==undefined){
+                        console.error("指定2が指定されていません")
+                    }else if(query[3]==undefined){
+                        console.error("指定3が指定されていません")
+                    }else if(isNaN((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)){
+                        console.error("引数1は日付形式以外は指定できません")
+                    }else if(isNaN((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)){
+                        console.error("引数2は日付形式以外は指定できません")
+                    }else if(isNaN((new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000)){
+                        console.error("引数3は日付形式以外は指定できません")
+                    }else if(((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)<0){
                         console.error("引数1が指定した変数の場所は0未満の場所です")
                     }else if(((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)<0){
                         console.error("引数2が指定した変数の場所は0未満の場所です")
                     }else if(((new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000)<0){
                         console.error("引数3が指定した変数の場所は0未満の場所です")
                     }else if(query[4]!=undefined){
-                        if(((new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000)<0){
+                        //引数4がある場合
+                        if(isNaN((new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000)){
+                        console.error("引数4は日付形式以外は指定できません")
+                        }
+                        else if(((new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000)<0){
                             console.error("引数4が指定した変数の場所は0未満です。")
                         }else{
-                            if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]<=vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                            if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                                //false
+                                if((vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
+                                console.error("ジャンプ先が1未満の場所です")
+                                }else{
+                                    i=vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2
+                                }
+                            }else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                                //false
+                                if((vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
+                                console.error("ジャンプ先が1未満の場所です")
+                                }else{
+                                    i=vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2
+                                }
+                            }else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]<=vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                                //true
                                 if((vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
                                 }else{
                                     i=vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2
                                 }
                             }else{
+                                //false
                                 if((vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
                                 }else{
@@ -262,7 +399,14 @@ function questionAsync(query) {
                             }
                         }
                     }else{
-                        if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]<=vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                        //引数4がない場合
+                        if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                            //false
+                        }else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                            //false
+                        }
+                        else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]<=vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                            //true
                             if((vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                             console.error("ジャンプ先が1未満の場所です")
                             }else{
@@ -270,26 +414,65 @@ function questionAsync(query) {
                             }
                         }
                     }
-                    
+
                 }else if(query[0][2]==9){
-                    //条件ジャンプ
-                    if(((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)<0){
+                                        //条件ジャンプ
+                    /*変数がundefinedの場合の処理
+                        なし>=なし
+                        数値>=なし
+                        なし>=数値
+                        数値>=数値
+                        の場合
+                    */
+                    if(query[1]==undefined){
+                        console.error("変数1が指定されていません")
+                    }else if(query[2]==undefined){
+                        console.error("指定2が指定されていません")
+                    }else if(query[3]==undefined){
+                        console.error("指定3が指定されていません")
+                    }else if(isNaN((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)){
+                        console.error("引数1は日付形式以外は指定できません")
+                    }else if(isNaN((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)){
+                        console.error("引数2は日付形式以外は指定できません")
+                    }else if(isNaN((new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000)){
+                        console.error("引数3は日付形式以外は指定できません")
+                    }else if(((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)<0){
                         console.error("引数1が指定した変数の場所は0未満の場所です")
                     }else if(((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)<0){
                         console.error("引数2が指定した変数の場所は0未満の場所です")
                     }else if(((new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000)<0){
                         console.error("引数3が指定した変数の場所は0未満の場所です")
                     }else if(query[4]!=undefined){
-                        if(((new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000)<0){
+                        //引数4がある場合
+                        if(isNaN((new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000)){
+                        console.error("引数4は日付形式以外は指定できません")
+                        }
+                        else if(((new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000)<0){
                             console.error("引数4が指定した変数の場所は0未満です。")
                         }else{
-                            if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]>=vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                            if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                                //false
+                                if((vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
+                                console.error("ジャンプ先が1未満の場所です")
+                                }else{
+                                    i=vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2
+                                }
+                            }else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                                //false
+                                if((vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
+                                console.error("ジャンプ先が1未満の場所です")
+                                }else{
+                                    i=vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2
+                                }
+                            }else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]>=vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                                //true
                                 if((vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
                                 }else{
                                     i=vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2
                                 }
                             }else{
+                                //false
                                 if((vari[(new Date(query[4][0],query[4][1],query[4][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
                                 }else{
@@ -298,7 +481,14 @@ function questionAsync(query) {
                             }
                         }
                     }else{
-                        if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]>=vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                        //引数4がない場合
+                        if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                            //false
+                        }else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)]==undefined){
+                            //false
+                        }
+                        else if(vari[((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)][1]>=vari[((new Date(query[2][0],query[2][1],query[2][2])-new Date(2000, 1, 1))/86400000)][1]){
+                            //true
                             if((vari[(new Date(query[3][0],query[3][1],query[3][2])-new Date(2000, 1, 1))/86400000][1]-2)<-1){
                             console.error("ジャンプ先が1未満の場所です")
                             }else{
