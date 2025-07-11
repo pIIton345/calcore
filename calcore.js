@@ -650,7 +650,7 @@ function questionAsync(query) {
             }
                     
         //}
-        console.log(i+1,vari)
+        //console.log(i+1,vari)
     }
     rl.close();
     if(output!=""){
