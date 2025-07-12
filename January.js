@@ -8,6 +8,7 @@ function January_first(que,poi,va,out,line,input){
     
     if(output!=""){
     console.log(output)
+    output="";
     }
     var point_before=point
         const answer = input;
