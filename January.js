@@ -1,18 +1,34 @@
-var readline = require('readline');
+function January_first(que,poi,va,out,line,input){
+    //1/1だけ
+     var query=que
+    var point=poi
+    var vari=va
+    var output=out
+    var i=line
+    
+    if(output!=""){
+    console.log(output)
+    }
+    var point_before=point
+        const answer = input;
+        var ans=`${answer}`;
+        if(String(Number(ans))===ans){
+            vari[point]=[0,Number(ans)]                                
+        }else{
+            var codes = [...ans].map(char => char.codePointAt(0));
+            for(var k=0;k<codes.length;k++){
+                vari[point]=[1,codes[k]]
+                point++;
+            }
+            point=point_before
+        }
+        
+        return [point,vari,output,i]
 
-var rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-        });
-function questionAsync(query) {
-
-// Promise ラップした question
-  return new Promise((resolve) => {
-    rl.question(query, resolve);
-  });
 }
+function January(que,poi,va,out,line){
 
-async function January(que,poi,va,out,line){
+    
     var query=que
     var point=poi
     var vari=va
@@ -20,6 +36,7 @@ async function January(que,poi,va,out,line){
     var i=line
                 if(query[0][2]==1){
                     //入力
+                    /*
                         if(output!=""){
                         console.log(output)
                         }
@@ -36,6 +53,7 @@ async function January(que,poi,va,out,line){
                                 }
                                 point=point_before
                             }
+                      */          
                 }else if(query[0][2]==2){
                     //出力
                     //console.log(vari[point])
@@ -492,4 +510,10 @@ async function January(que,poi,va,out,line){
                     }
                     
                 }
+                return [point,vari,output,i]
             }
+//calcore.jsにわたす
+module.exports={
+    January,
+    January_first
+}

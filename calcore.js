@@ -1,19 +1,46 @@
+var readline = require('readline');
 const Jan=require("./January.js")
+
 async function Main(input) {
+var rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+        });
+    function questionAsync(query) {
+
+    // Promise ラップした question
+    return new Promise((resolve) => {
+        rl.question(query, resolve);
+         });
+    }
 
     const inp = input.split("\n")
     var point=0;
     var vari=[]
     var output="";
+    var result
     for(var i=0;i<inp.length;i++){
+        
         var token=inp[i].split(" ")//クエリとトークン逆や
         var query=[...Array(token.length)].map((_,j)=>(token[j].split("/")))
         //console.log(query)    
         //if(query[0][0]==2020){
             if(query[0][1]==1){
                 //1月
-                var result=Jan.January(query,point,vari,output,i);
-                
+                if(query[0][2]==1){
+                    var rl_input= await questionAsync('> ');
+                result=Jan.January_first(query,point,vari,output,i,rl_input);
+                    point=result[0]
+                    vari=result[1]
+                    output=result[2]
+                    i=result[3]
+                }else{
+                result=Jan.January(query,point,vari,output,i);
+                    point=result[0]
+                    vari=result[1]
+                    output=result[2]
+                    i=result[3]
+                }
                 //ここまで
             }else if(query[0][1]==2){
                 if(query[0][2]==1){
@@ -169,11 +196,11 @@ async function Main(input) {
         //}
         console.log(i+1,vari)
     }
-    //rl.close();
+    rl.close();
     if(output!=""){
         console.log(output)
     }
-    console.log("ここで終わり")
+   
 }       
 
 const fs = require('fs');
