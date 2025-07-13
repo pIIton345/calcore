@@ -7,9 +7,21 @@ var query=que
 
     
         if(query[0][2]==1){
+            if(query[1]==undefined){
+                console.error("引数がありません")
+            }else if(isNaN((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)){
+                console.error("引数は日付形式以外では指定できません")
+            }else{
             vari[point]=[0,(new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000]
+            }
         }else if(query[0][2]==2){
+            if(query[1]==undefined){
+                console.error("引数がありません")
+            }else if(isNaN((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000)){
+                console.error("引数は日付形式以外では指定できません")
+            }else{
             vari[point]=[1,(new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000]
+            }
         }else if(query[0][2]==3){
             if((new Date(query[1][0],query[1][1],query[1][2])-new Date(2000, 1, 1))/86400000<0){
                 console.error("変数ポインタが0未満になってしまいます")
