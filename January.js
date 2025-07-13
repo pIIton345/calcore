@@ -63,7 +63,11 @@ function January(que,poi,va,out,line){
                         output+=vari[point][1]
                     }else{
                         //Unicode表を見よう！
+                        if(vari[point][1]>=0){
                         output+=String.fromCodePoint(vari[point][1])
+                        }else{
+                            console.error("ポインタ先の変数の値は0未満です")
+                        }
                     }
                     }else{
                         console.error("ポインタ先の変数に値はありません")
