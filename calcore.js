@@ -73,7 +73,7 @@ var rl = readline.createInterface({
             }
                     
         //}
-        console.log(i+1,vari)
+        console.log(i+1,vari,point)
     }
     rl.close();
     if(output!=""){
