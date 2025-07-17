@@ -120,8 +120,27 @@ var query=que
             }else if((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000<0){
                 console.error("指定した変数の場所は0未満の場所です")
                 process.exit(1); 
-            }else{
+            }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+                console.error("引数は日付形式以外では指定できません")
+                process.exit(1)
+            }
+            else{
             vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]=vari[point]
+            }
+        }else if(query[0][2]==11){
+            if(query[1]==undefined){
+                console.error("引数がありません")
+                process.exit(1)
+            }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+                console.error("引数は日付形式以外では指定できません")
+                process.exit(1)
+            }else if((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000<0){
+                console.error("指定した変数の場所は0未満の場所です")
+                process.exit(1)
+            }else if(vari[point]==undefined){
+                vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]=[0,0]
+            }else{
+                vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]=[0,vari[point][0]+1]
             }
         }
 
