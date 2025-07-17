@@ -88,7 +88,7 @@ const fs = require('fs');
 const filePath = process.argv[2];
 
 if (!filePath) {  
-console.log("welcome to Calcore ver.Alpha.1")
+console.log("welcome to Calcore.\nReading the clc file.")
 //console.log("-----")
 //Main(require("fs").readFileSync("/dev/stdin", "utf8"));
 }else{

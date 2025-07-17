@@ -63,14 +63,20 @@ function January(que,poi,va,out,line){
                         output+=vari[point][1]
                     }else{
                         //Unicode表を見よう！
-                        if(vari[point][1]>=0){
-                        output+=String.fromCodePoint(vari[point][1])
-                        }else{
-                            console.error("ポインタ先の変数の値は0未満です")
+                        if(vari[point][1]<0){
+                        console.error("ポインタ先の変数の値は0未満です")
+                        process.exit(1); 
+                    }else if(Number.isInteger(vari[point][1])==false){
+                            console.error("ポインタ先の変数の値は整数ではありません")
+                            process.exit(1); 
+                        }
+                        else{
+                            output+=String.fromCodePoint(vari[point][1])
                         }
                     }
                     }else{
                         console.error("ポインタ先の変数に値はありません")
+                        process.exit(1); 
                     }
                 }else if(query[0][2]==3){
                     //出力改行
@@ -81,15 +87,19 @@ function January(que,poi,va,out,line){
                     if(query[1]!=undefined){
                         if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
                             console.error("指定1は日付形式以外は指定できません。")
+                            process.exit(1); 
                         }else{
                         if((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000<0){
                         console.error("指定した変数の場所は0未満の場所です")
+                        process.exit(1); 
                         }else{
                         if(vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]==undefined){
                             console.error("指定した変数に値はありません")
+                            process.exit(1); 
                         }else{
                         if((vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                             console.error("ジャンプ先が1未満の場所です")
+                            process.exit(1); 
                         }else{
                             i=vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000][1]-2
                         }
@@ -98,6 +108,7 @@ function January(que,poi,va,out,line){
                     }
                     }else{
                         console.error("指定1が指定されていません")
+                        process.exit(1); 
                     }
                 }else if(query[0][2]==5){
                     //条件ジャンプ
@@ -110,37 +121,50 @@ function January(que,poi,va,out,line){
                     */
                     if(query[1]==undefined){
                         console.error("変数1が指定されていません")
+                        process.exit(1); 
                     }else if(query[2]==undefined){
                         console.error("指定2が指定されていません")
+                        process.exit(1); 
                     }else if(query[3]==undefined){
                         console.error("指定3が指定されていません")
+                        process.exit(1); 
                     }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数1は日付形式以外は指定できません")
+                        process.exit(1); 
                     }else if(isNaN((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数2は日付形式以外は指定できません")
+                        process.exit(1); 
                     }else if(isNaN((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数3は日付形式以外は指定できません")
+                        process.exit(1); 
                     }else if(((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("引数1が指定した変数の場所は0未満の場所です")
+                        process.exit(1); 
                     }else if(((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("引数2が指定した変数の場所は0未満の場所です")
+                        process.exit(1); 
                     }else if(((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("引数3が指定した変数の場所は0未満の場所です")
+                        process.exit(1); 
                     }else if(query[4]!=undefined){
                         //引数4がある場合
                         if(isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数4は日付形式以外は指定できません")
+                        process.exit(1); 
                         }
                         else if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
                             console.error("引数4が指定した変数の場所は0未満です。")
+                            process.exit(1); 
                         }else{
                             if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
                                 //true
                                 if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数3が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -149,9 +173,11 @@ function January(que,poi,va,out,line){
                                 //false
                                 if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数4が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -160,9 +186,11 @@ function January(que,poi,va,out,line){
                                 //true
                                 if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数3が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -171,9 +199,11 @@ function January(que,poi,va,out,line){
                                 //false
                                 if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数4が指定した変数の値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -186,9 +216,11 @@ function January(que,poi,va,out,line){
                             //true
                             if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                 console.error("引数3が指定した変数に値はありません")
+                                process.exit(1); 
                             }else{
                                 if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
+                                process.exit(1); 
                                 }else{
                                     i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
                                 }
@@ -200,9 +232,11 @@ function January(que,poi,va,out,line){
                             //true
                             if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                 console.error("引数3が指定した変数に値はありません")
+                                process.exit(1); 
                             }else{
                                 if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
+                                process.exit(1); 
                                 }else{
                                     i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
                                 }
@@ -220,37 +254,50 @@ function January(que,poi,va,out,line){
                     */
                     if(query[1]==undefined){
                         console.error("変数1が指定されていません")
+                        process.exit(1); 
                     }else if(query[2]==undefined){
                         console.error("指定2が指定されていません")
+                        process.exit(1); 
                     }else if(query[3]==undefined){
                         console.error("指定3が指定されていません")
+                        process.exit(1); 
                     }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数1は日付形式以外は指定できません")
+                        process.exit(1); 
                     }else if(isNaN((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数2は日付形式以外は指定できません")
+                        process.exit(1); 
                     }else if(isNaN((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数3は日付形式以外は指定できません")
+                        process.exit(1); 
                     }else if(((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("引数1が指定した変数の場所は0未満の場所です")
+                        process.exit(1); 
                     }else if(((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("引数2が指定した変数の場所は0未満の場所です")
+                        process.exit(1); 
                     }else if(((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("引数3が指定した変数の場所は0未満の場所です")
+                        process.exit(1); 
                     }else if(query[4]!=undefined){
                         //引数4がある場合
                         if(isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数4は日付形式以外は指定できません")
+                        process.exit(1); 
                         }
                         else if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
                             console.error("引数4が指定した変数の場所は0未満です。")
+                            process.exit(1); 
                         }else{
                             if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
                                 //false
                                 if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数4が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                         console.error("ジャンプ先が1未満の場所です")
+                                        process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -259,9 +306,11 @@ function January(que,poi,va,out,line){
                                 //false
                                 if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数4が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -270,9 +319,11 @@ function January(que,poi,va,out,line){
                                 //true
                                 if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数3が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -281,9 +332,11 @@ function January(que,poi,va,out,line){
                                 //false
                                 if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数4が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -301,9 +354,11 @@ function January(que,poi,va,out,line){
                             //true
                             if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                 console.error("引数3が指定した変数に値はありません")
+                                process.exit(1); 
                             }else{
                                 if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
+                                process.exit(1); 
                                 }else{
                                     i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
                                 }
@@ -323,37 +378,50 @@ function January(que,poi,va,out,line){
                     */
                     if(query[1]==undefined){
                         console.error("変数1が指定されていません")
+                        process.exit(1); 
                     }else if(query[2]==undefined){
                         console.error("指定2が指定されていません")
+                        process.exit(1); 
                     }else if(query[3]==undefined){
                         console.error("指定3が指定されていません")
+                        process.exit(1); 
                     }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数1は日付形式以外は指定できません")
+                        process.exit(1); 
                     }else if(isNaN((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数2は日付形式以外は指定できません")
+                        process.exit(1); 
                     }else if(isNaN((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数3は日付形式以外は指定できません")
+                        process.exit(1); 
                     }else if(((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("引数1が指定した変数の場所は0未満の場所です")
+                        process.exit(1); 
                     }else if(((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("引数2が指定した変数の場所は0未満の場所です")
+                        process.exit(1); 
                     }else if(((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("引数3が指定した変数の場所は0未満の場所です")
+                        process.exit(1); 
                     }else if(query[4]!=undefined){
                         //引数4がある場合
                         if(isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数4は日付形式以外は指定できません")
+                        process.exit(1); 
                         }
                         else if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
                             console.error("引数4が指定した変数の場所は0未満です。")
+                            process.exit(1); 
                         }else{
                             if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
                                 //false
                                 if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数4が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -362,9 +430,11 @@ function January(que,poi,va,out,line){
                                 //false
                                 if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数4が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -373,9 +443,11 @@ function January(que,poi,va,out,line){
                                 //true
                                 if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数3が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -384,9 +456,11 @@ function January(que,poi,va,out,line){
                                 //false
                                 if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数4が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -404,9 +478,11 @@ function January(que,poi,va,out,line){
                             //true
                             if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                 console.error("引数3が指定した変数に値はありません")
+                                process.exit(1); 
                             }else{
                                 if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
+                                process.exit(1); 
                                 }else{
                                     i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
                                 }
@@ -425,37 +501,50 @@ function January(que,poi,va,out,line){
                     */
                     if(query[1]==undefined){
                         console.error("変数1が指定されていません")
+                        process.exit(1); 
                     }else if(query[2]==undefined){
                         console.error("指定2が指定されていません")
+                        process.exit(1); 
                     }else if(query[3]==undefined){
                         console.error("指定3が指定されていません")
+                        process.exit(1); 
                     }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数1は日付形式以外は指定できません")
+                        process.exit(1); 
                     }else if(isNaN((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数2は日付形式以外は指定できません")
+                        process.exit(1); 
                     }else if(isNaN((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数3は日付形式以外は指定できません")
+                        process.exit(1); 
                     }else if(((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("引数1が指定した変数の場所は0未満の場所です")
+                        process.exit(1); 
                     }else if(((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("引数2が指定した変数の場所は0未満の場所です")
+                        process.exit(1); 
                     }else if(((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("引数3が指定した変数の場所は0未満の場所です")
+                        process.exit(1); 
                     }else if(query[4]!=undefined){
                         //引数4がある場合
                         if(isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数4は日付形式以外は指定できません")
+                        process.exit(1); 
                         }
                         else if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
                             console.error("引数4が指定した変数の場所は0未満です。")
+                            process.exit(1); 
                         }else{
                             if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
                                 //false
                                 if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数4が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -464,9 +553,11 @@ function January(que,poi,va,out,line){
                                 //false
                                 if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数4が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -475,9 +566,11 @@ function January(que,poi,va,out,line){
                                 //true
                                 if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数3が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -486,9 +579,11 @@ function January(que,poi,va,out,line){
                                 //false
                                 if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数4が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -506,9 +601,11 @@ function January(que,poi,va,out,line){
                             //true
                             if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                 console.error("引数3が指定した変数に値はありません")
+                                process.exit(1); 
                             }else{
                                 if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
+                                process.exit(1); 
                                 }else{
                                     i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
                                 }
@@ -527,37 +624,50 @@ function January(que,poi,va,out,line){
                     */
                     if(query[1]==undefined){
                         console.error("変数1が指定されていません")
+                        process.exit(1); 
                     }else if(query[2]==undefined){
                         console.error("指定2が指定されていません")
+                        process.exit(1); 
                     }else if(query[3]==undefined){
                         console.error("指定3が指定されていません")
+                        process.exit(1); 
                     }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数1は日付形式以外は指定できません")
+                        process.exit(1); 
                     }else if(isNaN((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数2は日付形式以外は指定できません")
+                        process.exit(1); 
                     }else if(isNaN((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数3は日付形式以外は指定できません")
+                        process.exit(1); 
                     }else if(((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("引数1が指定した変数の場所は0未満の場所です")
+                        process.exit(1); 
                     }else if(((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("引数2が指定した変数の場所は0未満の場所です")
+                        process.exit(1); 
                     }else if(((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("引数3が指定した変数の場所は0未満の場所です")
+                        process.exit(1); 
                     }else if(query[4]!=undefined){
                         //引数4がある場合
                         if(isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
                         console.error("引数4は日付形式以外は指定できません")
+                        process.exit(1); 
                         }
                         else if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
                             console.error("引数4が指定した変数の場所は0未満です。")
+                            process.exit(1); 
                         }else{
                             if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
                                 //false
                                 if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数4が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -566,9 +676,11 @@ function January(que,poi,va,out,line){
                                 //false
                                 if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数4が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -577,9 +689,11 @@ function January(que,poi,va,out,line){
                                 //true
                                 if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数3が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -588,9 +702,11 @@ function January(que,poi,va,out,line){
                                 //false
                                 if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("引数4が指定した変数に値はありません")
+                                    process.exit(1); 
                                 }else{
                                     if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("ジャンプ先が1未満の場所です")
+                                    process.exit(1); 
                                     }else{
                                         i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
@@ -608,9 +724,11 @@ function January(que,poi,va,out,line){
                             //true
                             if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
                                 console.error("引数3が指定した変数に値はありません")
+                                process.exit(1); 
                             }else{
                                 if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                 console.error("ジャンプ先が1未満の場所です")
+                                process.exit(1); 
                                 }else{
                                     i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
                                 }
