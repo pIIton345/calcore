@@ -38,7 +38,7 @@ function April(que,poi,va,out,line){
         vari[point]=[0,today.getMilliseconds()]
     }else if(query[0][2]==10){
         var today = new Date();
-        vari[point]=[0,(new Date(today.getFullYear(),today.getMonth() + 1,today.getDate())-new Date(2000, 1, 1))/86400000]
+        vari[point]=[0,(new Date(today.getFullYear(),today.getMonth(),today.getDate())-new Date(2000, 0, 1))/86400000]
     }
 
     return [point,vari,output,i]
