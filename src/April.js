@@ -8,10 +8,8 @@ function April(que,poi,va,out,line){
 
     if(query[0][2]==1){
         if(output!=""){
-        console.log(output)
         output="";
         }
-        console.log("このバージョンはbeta版です。\n\nジョークを教えてください!")
     }else if(query[0][2]==2){
         var today = new Date();
         vari[point]=[0,today.getFullYear()]
