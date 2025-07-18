@@ -73,7 +73,10 @@ var rl = readline.createInterface({
             }
                     
         //}
-        //console.log(i+1,vari,point)
+        console.log(i,vari,point)
+
+        await new Promise(resolve => setTimeout(resolve, 0));
+
     }
     rl.close();
     if(output!=""){
@@ -100,3 +103,8 @@ try {
   console.error('ファイルの読み込みに失敗:', err.message);
 }
 }
+
+process.on("SIGINT", () => {
+  //console.log("\nCtrl+C を受け取りました。プログラムを終了します。");
+  process.exit(0);
+});
