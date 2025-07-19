@@ -93,7 +93,7 @@ function January(que,poi,va,out,line){
                     if(query[1]!=undefined){
                         if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
                             console.error("calcore_error:"+(i+1))
-                            console.error("引数1は日付形式以外は指定できません。")
+                            console.error("引数は日付形式以外は指定できません。")
                             console.error("Argument 1 must be a valid date.")
                             process.exit(1); 
                         }else{
@@ -316,17 +316,17 @@ function January(que,poi,va,out,line){
                     */
                     if(query[1]==undefined){
                         console.error("calcore_error:"+(i+1))
-                        console.error("変数1が指定されていません")
+                        console.error("引数1が指定されていません")
                         console.error("Argument 1 is not specified.")
                         process.exit(1); 
                     }else if(query[2]==undefined){
                         console.error("calcore_error:"+(i+1))
-                        console.error("指定2が指定されていません")
+                        console.error("引数2が指定されていません")
                         console.error("Argument 2 is not specified.")
                         process.exit(1); 
                     }else if(query[3]==undefined){
                         console.error("calcore_error:"+(i+1))
-                        console.error("指定3が指定されていません")
+                        console.error("引数3が指定されていません")
                         console.error("Argument 3 is not specified.")
                         process.exit(1); 
                     }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
