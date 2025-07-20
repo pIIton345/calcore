@@ -10,10 +10,12 @@ var query=que
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数がありません")
+                console.error("No arguments provided.")
                 process.exit(1); 
             }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
+                console.error("Argument must be a valid date.")
                 process.exit(1); 
             }else{
             vari[point]=[0,(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]
@@ -22,10 +24,12 @@ var query=que
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数がありません")
+                console.error("No arguments provided.")
                 process.exit(1); 
             }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
+                console.error("Argument must be a valid date.")
                 process.exit(1); 
             }else{
             vari[point]=[1,(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]
@@ -34,14 +38,17 @@ var query=que
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数がありません")
+                console.error("No arguments provided.")
                 process.exit(1); 
             }else if((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("変数ポインタが0未満になってしまいます")
+                console.error("Pointer to variable would underflow.")
                 process.exit(1); 
             }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
+                console.error("Argument must be a valid date.")
                 process.exit(1); 
             }else{
                 point=(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000
@@ -50,14 +57,17 @@ var query=que
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数がありません")
+                console.error("No arguments provided.")
                 process.exit(1); 
             }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
+                console.error("Argument must be a valid date.")
                 process.exit(1); 
             }else if((point+(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("変数ポインタが0未満になってしまいます")
+                console.error("Pointer to variable would underflow.")
                 process.exit(1); 
             }else{
                 point+=(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000
@@ -67,24 +77,29 @@ var query=que
           if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))    
                 console.error("引数がありません")
-                process.exit(1);             
+                console.error("No arguments provided.")
+                process.exit(1);
           }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
+                console.error("Argument must be a valid date.")
                 process.exit(1); 
           }else if((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("指定した変数の場所は0未満の場所です")
+                console.error("Specified memory address is negative.")
                 process.exit(1); 
           }else{
           if(vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("指定した変数は値がありません")
+                console.error("Specified variable is undefined.")
                 process.exit(1); 
           }
           else if(vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000][1]<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("変数ポインタが0未満になってしまいます")
+                console.error("Pointer to variable would underflow.")
                 process.exit(1); 
           }else{
           point=vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000][1]
@@ -94,10 +109,12 @@ var query=que
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数がありません")
+                console.error("No arguments provided.")
                 process.exit(1); 
             }else if((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("指定した変数の場所は0未満の場所です")
+                console.error("Specified memory address is negative.")
                 process.exit(1); 
             }else{
             vari[point]=vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]
@@ -107,14 +124,17 @@ var query=que
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数がありません")
+                console.error("No arguments provided.")
                 process.exit(1); 
             }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
+                console.error("Argument must be a valid date.")
                 process.exit(1); 
             }else if((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000<0){
             console.error("calcore_error:"+(i+1))
             console.error("指定した変数の場所は0未満の場所です")
+            console.error("Specified memory address is negative.")
             process.exit(1); 
             }else{
             vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]=[0,point]
@@ -123,6 +143,7 @@ var query=que
             if(vari[point]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("ポインタ先の変数に値がありません。")
+                console.error("Value at pointer is undefined.")
                 process.exit(1); 
             }else{
                 vari[point][0]=1
@@ -131,6 +152,7 @@ var query=que
             if(vari[point]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("ポインタ先の変数に値がありません。")
+                console.error("Value at pointer is undefined.")
                 process.exit(1); 
             }else{
                 vari[point][0]=0
@@ -139,14 +161,17 @@ var query=que
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数がありません")
+                console.error("No arguments provided.")
                 process.exit(1); 
             }else if((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("指定した変数の場所は0未満の場所です")
+                console.error("Specified memory address is negative.")
                 process.exit(1); 
             }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
+                console.error("Argument must be a valid date.")
                 process.exit(1)
             }
             else{
@@ -156,14 +181,17 @@ var query=que
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数がありません")
+                console.error("No arguments provided.")
                 process.exit(1)
             }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
+                console.error("Argument must be a valid date.")
                 process.exit(1)
             }else if((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("指定した変数の場所は0未満の場所です")
+                console.error("Specified memory address is negative.")
                 process.exit(1)
             }else if(vari[point]==undefined){
                 vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]=[0,0]
