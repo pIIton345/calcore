@@ -13,16 +13,13 @@ function January_first(que,poi,va,out,line,input){
     var point_before=point
         const answer = input;
         var ans=`${answer}`;
-        if(String(Number(ans))===ans){
-            vari[point]=[0,Number(ans)]                                
-        }else{
             var codes = [...ans].map(char => char.codePointAt(0));
             for(var k=0;k<codes.length;k++){
                 vari[point]=[1,codes[k]]
                 point++;
             }
             point=point_before
-        }
+        
         
         return [point,vari,output,i]
 

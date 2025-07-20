@@ -73,7 +73,7 @@ var rl = readline.createInterface({
             }
                     
         //}
-        console.log(i,vari,point)
+        //console.log(i,vari,point)
 
         await new Promise(resolve => setTimeout(resolve, 0));
 
