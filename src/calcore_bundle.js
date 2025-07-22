@@ -968,7 +968,6 @@ function January(que,poi,va,out,line){
                 }
                 return [point,vari,output,i]
             }
-
             function February(que,poi,va,out,line){
 var query=que
     var point=poi
@@ -1421,7 +1420,6 @@ function March(que,poi,va,out,line){
 
     return [point,vari,output,i]
 }
-
 function April(que,poi,va,out,line){
     var query=que
     var point=poi
@@ -1484,11 +1482,53 @@ var rl = readline.createInterface({
     var point=0;
     var vari=[]
     var output="";
-    var result
-    for(var i=0;i<inp.length;i++){
+    var result;
+
+    var date_sign="";
+    var date_row=[];
+    if(inp[0]=="YYYY/MM/DD"){
+        date_sign="/"
+        date_row=[0,1,2]
+    }else if(inp[0]=="YYYY.MM.DD"){
+        date_sign="."
+        date_row=[0,1,2]
+    }else if(inp[0]=="YYYY-MM-DD"){
+        date_sign="-"
+        date_row=[0,1,2]
+    }else if(inp[0]=="MM/DD/YYYY"){
+        date_sign="/"
+        date_row=[2,0,1]
+    }else if(inp[0]=="MM.DD.YYYY"){
+        date_sign=".";
+        date_row=[2,0,1]
+    }else if(inp[0]=="MM-DD-YYYY"){
+        date_sign="-";
+        date_row=[2,0,1]
+    }else if(inp[0]=="DD/MM/YYYY"){
+        date_sign="/"
+        date_row=[2,1,0]
+    }else if(inp[0]=="DD.MM.YYYY"){
+        date_sign="."
+        date_row=[2,1,0]
+    }else if(inp[0]=="DD-MM-YYYY"){
+        date_sign="-"
+        date_row=[2,1,0]
+    }else{
+        console.error("calcore_error:"+0)
+        console.error("対応していない日付表記です")
+        console.error("Unsupported date format")
+        process.exit(1);
+    }
+
+
+    for(var i=1;i<inp.length;i++){
         
         var token=inp[i].split(" ")//クエリとトークン逆や
-        var query=[...Array(token.length)].map((_,j)=>(token[j].split("/")))
+        var query=[...Array(token.length)].map((_,j)=>(token[j].split(date_sign)))
+        for(var j=0;j<query.length;j++){
+            query[j]=[query[j][date_row[0]],query[j][date_row[1]],query[j][date_row[2]]]
+        }
+
         //console.log(query)    
         //if(query[0][0]==2020){
             if(query[0][1]==1){
