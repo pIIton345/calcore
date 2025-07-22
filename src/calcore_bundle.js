@@ -26,7 +26,7 @@ function January_first(que,poi,va,out,line,input){
         return [point,vari,output,i]
 
 }
-function January(que,poi,va,out,line){
+function January(que,poi,va,out,line,date){
 
     
     var query=que
@@ -34,7 +34,9 @@ function January(que,poi,va,out,line){
     var vari=va
     var output=out
     var i=line
-                if(query[0][2]==1){
+    var date_row=date
+
+                if(query[0][date_row[2]]==1){
                     //入力
                     /*
                         if(output!=""){
@@ -54,7 +56,7 @@ function January(que,poi,va,out,line){
                                 point=point_before
                             }
                       */          
-                }else if(query[0][2]==2){
+                }else if(query[0][date_row[2]]==2){
                     //出力
                     //console.log(vari[point])
                     if(vari[point]!=undefined){
@@ -83,38 +85,38 @@ function January(que,poi,va,out,line){
                         console.error("Value at pointer is undefined.")
                         process.exit(1); 
                     }
-                }else if(query[0][2]==3){
+                }else if(query[0][date_row[2]]==3){
                     //出力改行
                     console.log(output)
                     output="";
-                }else if(query[0][2]==4){
+                }else if(query[0][date_row[2]]==4){
                     //ジャンプ
                     if(query[1]!=undefined){
-                        if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+                        if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                             console.error("calcore_error:"+(i+1))
                             console.error("引数は日付形式以外は指定できません。")
                             console.error("Argument 1 must be a valid date.")
                             process.exit(1); 
                         }else{
-                        if((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000<0){
+                        if((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000<0){
                             console.error("calcore_error:"+(i+1))
                             console.error("指定した変数の場所は0未満の場所です")
                             console.error("Specified memory address is negative.")
                         process.exit(1); 
                         }else{
-                        if(vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                        if(vari[(new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                             console.error("calcore_error:"+(i+1))
                             console.error("指定した変数に値はありません")
                             console.error("Specified variable is undefined.")
                             process.exit(1); 
                         }else{
-                        if((vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                        if((vari[(new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                             console.error("calcore_error:"+(i+1))
                             console.error("ジャンプ先が1未満の場所です")
                             console.error("Jump address is less than 1.")
                             process.exit(1); 
                         }else{
-                            i=vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000][1]-2
+                            i=vari[(new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                         }
                         }
                     }
@@ -125,7 +127,7 @@ function January(que,poi,va,out,line){
                         console.error("Argument is not specified.")
                         process.exit(1); 
                     }
-                }else if(query[0][2]==5){
+                }else if(query[0][date_row[2]]==5){
                     //条件ジャンプ
                     /*変数がundefinedの場合の処理
                         なし==なし
@@ -149,162 +151,162 @@ function January(que,poi,va,out,line){
                         console.error("引数3が指定されていません")
                         console.error("Argument 3 is not specified.")
                         process.exit(1); 
-                    }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+                    }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数1は日付形式以外は指定できません")
                         console.error("Argument 1 must be a valid date.")
                         process.exit(1); 
-                    }else if(isNaN((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)){
+                    }else if(isNaN((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数2は日付形式以外は指定できません")
                         console.error("Argument 2 must be a valid date.")
                         process.exit(1); 
-                    }else if(isNaN((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)){
+                    }else if(isNaN((new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数3は日付形式以外は指定できません")
                         console.error("Argument 3 must be a valid date.")
                         process.exit(1); 
-                    }else if(((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
+                    }else if(((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数1が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 1 is negative.")
                         process.exit(1); 
-                    }else if(((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)<0){
+                    }else if(((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数2が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 2 is negative.")
                         process.exit(1); 
-                    }else if(((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)<0){
+                    }else if(((new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数3が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 3 is negative.")
                         process.exit(1); 
                     }else if(query[4]!=undefined){
                         //引数4がある場合
-                        if(isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
+                        if(isNaN((new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数4は日付形式以外は指定できません")
                         console.error("Argument 4 must be a valid date.")
                         process.exit(1); 
                         }
-                        else if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
+                        else if(((new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                             console.error("calcore_error:"+(i+1))
                             console.error("引数4が指定した変数の場所は0未満です。")
                             console.error("The variable location specified by argument 4 is negative.")
                             process.exit(1); 
                         }else{
-                            if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                            if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                                 //true
-                                if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数3が指定した変数に値はありません")
                                     console.error("Variable specified by argument 3 has no value.")
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
-                            }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                            }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                                 //false
-                                if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数4が指定した変数に値はありません")
                                     console.error("Variable specified by argument 4 has no value.")
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
-                            }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)][1]==vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)][1]){
+                            }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]==vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]){
                                 //true
-                                if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数3が指定した変数に値はありません")
                                     console.error("Variable specified by argument 3 has no value.")
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
                             }else{
                                 //false
-                                if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数4が指定した変数の値はありません")
                                     console.error("Variable specified by argument 4 has no value.")
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
                             }
                         }
                     }else{
                         //引数4がない場合
-                        if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                        if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                             //true
-                            if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                            if(vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                 console.error("calcore_error:"+(i+1))
                                 console.error("引数3が指定した変数に値はありません")
                                 console.error("Variable specified by argument 3 has no value.")
                                 process.exit(1); 
                             }else{
-                                if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                if((vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                 console.error("calcore_error:"+(i+1))
                                 console.error("ジャンプ先が1未満の場所です")
                                 console.error("Jump address is less than 1.")
                                 process.exit(1); 
                                 }else{
-                                    i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                    i=vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                 }
                             }
-                        }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                        }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                             //false
                         }
-                        else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)][1]==vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)][1]){
+                        else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]==vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]){
                             //true
-                            if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                            if(vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                 console.error("calcore_error:"+(i+1))
                                 console.error("引数3が指定した変数に値はありません")
                                 console.error("Variable specified by argument 3 has no value.")
                                 process.exit(1); 
                             }else{
-                                if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                if((vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                 console.error("calcore_error:"+(i+1))
                                 console.error("ジャンプ先が1未満の場所です")
                                 console.error("Jump address is less than 1.")
                                 process.exit(1); 
                                 }else{
-                                    i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                    i=vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                 }
                             }
                         }
                     }
-                }else if(query[0][2]==6){
+                }else if(query[0][date_row[2]]==6){
                     //条件ジャンプ
                     /*変数がundefinedの場合の処理
                         なし<なし
@@ -328,148 +330,148 @@ function January(que,poi,va,out,line){
                         console.error("引数3が指定されていません")
                         console.error("Argument 3 is not specified.")
                         process.exit(1); 
-                    }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+                    }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数1は日付形式以外は指定できません")
                         console.error("Argument 1 must be a valid date.")
                         process.exit(1); 
-                    }else if(isNaN((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)){
+                    }else if(isNaN((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数2は日付形式以外は指定できません")
                         console.error("Argument 2 must be a valid date.")
                         process.exit(1); 
-                    }else if(isNaN((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)){
+                    }else if(isNaN((new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数3は日付形式以外は指定できません")
                         console.error("Argument 3 must be a valid date.")
                         process.exit(1); 
-                    }else if(((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
+                    }else if(((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数1が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 1 is negative.")
                         process.exit(1); 
-                    }else if(((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)<0){
+                    }else if(((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数2が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 2 is negative.")
                         process.exit(1); 
-                    }else if(((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)<0){
+                    }else if(((new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数3が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 3 is negative.")
                         process.exit(1); 
                     }else if(query[4]!=undefined){
                         //引数4がある場合
-                        if(isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
+                        if(isNaN((new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数4は日付形式以外は指定できません")
                         console.error("Argument 4 must be a valid date.")
                         process.exit(1); 
                         }
-                        else if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
+                        else if(((new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                             console.error("calcore_error:"+(i+1))
                             console.error("引数4が指定した変数の場所は0未満です。")
                             console.error("The variable location specified by argument 4 is negative.")
                             process.exit(1); 
                         }else{
-                            if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                            if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                                 //false
-                                if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数4が指定した変数に値はありません")
                                     console.error("Variable specified by argument 4 has no value.")
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                         console.error("calcore_error:"+(i+1))
                                         console.error("ジャンプ先が1未満の場所です")
                                         console.error("Jump address is less than 1.")
                                         process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
-                            }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                            }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                                 //false
-                                if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数4が指定した変数に値はありません")
                                     console.error("Variable specified by argument 4 has no value.")
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
-                            }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)][1]<vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)][1]){
+                            }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]<vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]){
                                 //true
-                                if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数3が指定した変数に値はありません")
                                     console.error("Variable specified by argument 3 has no value.")
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
                             }else{
                                 //false
-                                if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数4が指定した変数に値はありません")
                                     console.error("Variable specified by argument 4 has no value.")           
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
                             }
                         }
                     }else{
                         //引数4がない場合
-                        if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                        if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                             //false
-                        }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                        }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                             //false
                         }
-                        else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)][1]<vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)][1]){
+                        else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]<vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]){
                             //true
-                            if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                            if(vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                 console.error("calcore_error:"+(i+1))
                                 console.error("引数3が指定した変数に値はありません")
                                 console.error("Variable specified by argument 3 has no value.")
                                 process.exit(1); 
                             }else{
-                                if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                if((vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                 console.error("calcore_error:"+(i+1))
                                 console.error("ジャンプ先が1未満の場所です")
                                 console.error("Jump address is less than 1."); 
                                 process.exit(1); 
                                 }else{
-                                    i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                    i=vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                 }
                             }
                         }
                     }
 
-                }else if(query[0][2]==7){
+                }else if(query[0][date_row[2]]==7){
                     
                     //条件ジャンプ
                     /*変数がundefinedの場合の処理
@@ -494,148 +496,148 @@ function January(que,poi,va,out,line){
                         console.error("引数3が指定されていません")
                         console.error("Argument 3 is not specified.")
                         process.exit(1); 
-                    }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+                    }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数1は日付形式以外は指定できません")
                         console.error("Argument 1 must be a valid date.")
                         process.exit(1); 
-                    }else if(isNaN((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)){
+                    }else if(isNaN((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数2は日付形式以外は指定できません")
                         console.error("Argument 2 must be a valid date.")
                         process.exit(1); 
-                    }else if(isNaN((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)){
+                    }else if(isNaN((new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数3は日付形式以外は指定できません")
                         console.error("Argument 3 must be a valid date.")
                         process.exit(1); 
-                    }else if(((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
+                    }else if(((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数1が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 1 is negative.")
                         process.exit(1); 
-                    }else if(((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)<0){
+                    }else if(((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数2が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 2 is negative.")
                         process.exit(1); 
-                    }else if(((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)<0){
+                    }else if(((new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数3が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 3 is negative.")
                         process.exit(1); 
                     }else if(query[4]!=undefined){
                         //引数4がある場合
-                        if(isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
+                        if(isNaN((new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数4は日付形式以外は指定できません")
                         console.error("Argument 4 must be a valid date.")
                         process.exit(1); 
                         }
-                        else if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
+                        else if(((new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                             console.error("calcore_error:"+(i+1))
                             console.error("引数4が指定した変数の場所は0未満です。")
                             console.error("The variable location specified by argument 4 is negative.")
                             process.exit(1); 
                         }else{
-                            if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                            if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                                 //false
-                                if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数4が指定した変数に値はありません")
                                     console.error("Variable specified by argument 4 has no value.")
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
-                            }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                            }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                                 //false
-                                if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数4が指定した変数に値はありません")
                                     console.error("Variable specified by argument 4 has no value.")
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
-                            }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)][1]>vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)][1]){
+                            }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]>vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]){
                                 //true
-                                if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数3が指定した変数に値はありません")
                                     console.error("Variable specified by argument 3 has no value.")
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
                             }else{
                                 //false
-                                if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数4が指定した変数に値はありません")
                                     console.error("Variable specified by argument 4 has no value.")     
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
                             }
                         }
                     }else{
                         //引数4がない場合
-                        if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                        if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                             //false
-                        }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                        }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                             //false
                         }
-                        else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)][1]>vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)][1]){
+                        else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]>vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]){
                             //true
-                            if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                            if(vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                 console.error("calcore_error:"+(i+1))
                                 console.error("引数3が指定した変数に値はありません")
                                 console.error("Variable specified by argument 3 has no value.")
                                 process.exit(1); 
                             }else{
-                                if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                if((vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                 console.error("calcore_error:"+(i+1))
                                 console.error("ジャンプ先が1未満の場所です")
                                 console.error("Jump address is less than 1."); 
                                 process.exit(1); 
                                 }else{
-                                    i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                    i=vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                 }
                             }
                         }
                     }
                     
-                }else if(query[0][2]==8){
+                }else if(query[0][date_row[2]]==8){
                     //条件ジャンプ
                     /*変数がundefinedの場合の処理
                         なし<=なし
@@ -659,148 +661,148 @@ function January(que,poi,va,out,line){
                         console.error("引数3が指定されていません")
                         console.error("Argument 3 is not specified.")
                         process.exit(1); 
-                    }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+                    }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数1は日付形式以外は指定できません")
                         console.error("Argument 1 must be a valid date.")
                         process.exit(1); 
-                    }else if(isNaN((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)){
+                    }else if(isNaN((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数2は日付形式以外は指定できません")
                         console.error("Argument 2 must be a valid date.")
                         process.exit(1); 
-                    }else if(isNaN((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)){
+                    }else if(isNaN((new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数3は日付形式以外は指定できません")
                         console.error("Argument 3 must be a valid date.")
                         process.exit(1); 
-                    }else if(((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
+                    }else if(((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数1が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 1 is negative.")
                         process.exit(1); 
-                    }else if(((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)<0){
+                    }else if(((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数2が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 2 is negative.")
                         process.exit(1); 
-                    }else if(((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)<0){
+                    }else if(((new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数3が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 3 is negative.")
                         process.exit(1); 
                     }else if(query[4]!=undefined){
                         //引数4がある場合
-                        if(isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
+                        if(isNaN((new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数4は日付形式以外は指定できません")
                         console.error("Argument 4 must be a valid date.")
                         process.exit(1); 
                         }
-                        else if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
+                        else if(((new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                             console.error("calcore_error:"+(i+1))
                             console.error("引数4が指定した変数の場所は0未満です。")
                             console.error("The variable location specified by argument 4 is negative.")
                             process.exit(1); 
                         }else{
-                            if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                            if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                                 //false
-                                if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数4が指定した変数に値はありません")
                                     console.error("Variable specified by argument 4 has no value.")
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
-                            }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                            }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                                 //false
-                                if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数4が指定した変数に値はありません")
                                     console.error("Variable specified by argument 4 has no value.")
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
-                            }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)][1]<=vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)][1]){
+                            }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]<=vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]){
                                 //true
-                                if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数3が指定した変数に値はありません")
                                     console.error("Variable specified by argument 3 has no value.")
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
                             }else{
                                 //false
-                                if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数4が指定した変数に値はありません")
                                     console.error("Variable specified by argument 4 has no value.")     
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
                             }
                         }
                     }else{
                         //引数4がない場合
-                        if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                        if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                             //false
-                        }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                        }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                             //false
                         }
-                        else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)][1]<=vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)][1]){
+                        else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]<=vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]){
                             //true
-                            if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                            if(vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                 console.error("calcore_error:"+(i+1))
                                 console.error("引数3が指定した変数に値はありません")
                                 console.error("Variable specified by argument 3 has no value.")
                                 process.exit(1); 
                             }else{
-                                if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                if((vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                 console.error("calcore_error:"+(i+1))
                                 console.error("ジャンプ先が1未満の場所です")
                                 console.error("Jump address is less than 1."); 
                                 process.exit(1); 
                                 }else{
-                                    i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                    i=vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                 }
                             }
                         }
                     }
 
-                }else if(query[0][2]==9){
+                }else if(query[0][date_row[2]]==9){
                                         //条件ジャンプ
                     /*変数がundefinedの場合の処理
                         なし>=なし
@@ -824,142 +826,142 @@ function January(que,poi,va,out,line){
                         console.error("引数3が指定されていません")
                         console.error("Argument 3 is not specified.")
                         process.exit(1); 
-                    }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+                    }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数1は日付形式以外は指定できません")
                         console.error("Argument 1 must be a valid date.")
                         process.exit(1); 
-                    }else if(isNaN((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)){
+                    }else if(isNaN((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数2は日付形式以外は指定できません")
                         console.error("Argument 2 must be a valid date.")
                         process.exit(1); 
-                    }else if(isNaN((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)){
+                    }else if(isNaN((new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数3は日付形式以外は指定できません")
                         console.error("Argument 3 must be a valid date.")
                         process.exit(1); 
-                    }else if(((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
+                    }else if(((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数1が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 1 is negative.")
                         process.exit(1); 
-                    }else if(((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)<0){
+                    }else if(((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数2が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 2 is negative.")
                         process.exit(1); 
-                    }else if(((new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000)<0){
+                    }else if(((new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数3が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 3 is negative.")
                         process.exit(1); 
                     }else if(query[4]!=undefined){
                         //引数4がある場合
-                        if(isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
+                        if(isNaN((new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数4は日付形式以外は指定できません")
                         console.error("Argument 4 must be a valid date.")
                         process.exit(1); 
                         }
-                        else if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
+                        else if(((new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                             console.error("calcore_error:"+(i+1))
                             console.error("引数4が指定した変数の場所は0未満です。")
                             console.error("The variable location specified by argument 4 is negative.")
                             process.exit(1); 
                         }else{
-                            if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                            if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                                 //false
-                                if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数4が指定した変数に値はありません")
                                     console.error("Variable specified by argument 4 has no value.")
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
-                            }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                            }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                                 //false
-                                if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数4が指定した変数に値はありません")
                                     console.error("Variable specified by argument 4 has no value.")
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
-                            }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)][1]>=vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)][1]){
+                            }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]>=vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]){
                                 //true
-                                if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数3が指定した変数に値はありません")
                                     console.error("Variable specified by argument 3 has no value.")
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
                             }else{
                                 //false
-                                if(vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                                if(vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("引数4が指定した変数に値はありません")
                                     console.error("Variable specified by argument 4 has no value.") 
                                     process.exit(1); 
                                 }else{
-                                    if((vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                    if((vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                     console.error("calcore_error:"+(i+1))
                                     console.error("ジャンプ先が1未満の場所です")
                                     console.error("Jump address is less than 1.")
                                     process.exit(1); 
                                     }else{
-                                        i=vari[(new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                        i=vari[(new Date(query[4][date_row[0]],query[4][date_row[1]]-1,query[4][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                     }
                                 }
                             }
                         }
                     }else{
                         //引数4がない場合
-                        if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                        if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined&&vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                             //false
-                        }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+                        }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined||vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                             //false
                         }
-                        else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)][1]>=vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)][1]){
+                        else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]>=vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]){
                             //true
-                            if(vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000]==undefined){
+                            if(vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                                 console.error("calcore_error:"+(i+1))
                                 console.error("引数3が指定した変数に値はありません")
                                 console.error("Variable specified by argument 3 has no value.")
                                 process.exit(1); 
                             }else{
-                                if((vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
+                                if((vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2)<-1){
                                 console.error("calcore_error:"+(i+1))
                                 console.error("ジャンプ先が1未満の場所です")
                                 console.error("Jump address is less than 1."); 
                                 process.exit(1); 
                                 }else{
-                                    i=vari[(new Date(query[3][0],query[3][1]-1,query[3][2])-new Date(2000, 0, 1))/86400000][1]-2
+                                    i=vari[(new Date(query[3][date_row[0]],query[3][date_row[1]]-1,query[3][date_row[2]])-new Date(2000, 0, 1))/86400000][1]-2
                                 }
                             }
                         }
@@ -969,148 +971,149 @@ function January(que,poi,va,out,line){
                 return [point,vari,output,i]
             }
 
-            function February(que,poi,va,out,line){
+            function February(que,poi,va,out,line,date){
 var query=que
     var point=poi
     var vari=va
     var output=out
     var i=line
+    var date_row=date
 
     
-        if(query[0][2]==1){
+        if(query[0][date_row[2]]==1){
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数がありません")
                 console.error("No arguments provided.")
                 process.exit(1); 
-            }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
                 process.exit(1); 
             }else{
-            vari[point]=[0,(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]
+            vari[point]=[0,(new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000]
             }
-        }else if(query[0][2]==2){
+        }else if(query[0][date_row[2]]==2){
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数がありません")
                 console.error("No arguments provided.")
                 process.exit(1); 
-            }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
                 process.exit(1); 
             }else{
-            vari[point]=[1,(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]
+            vari[point]=[1,(new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000]
             }
-        }else if(query[0][2]==3){
+        }else if(query[0][date_row[2]]==3){
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数がありません")
                 console.error("No arguments provided.")
                 process.exit(1); 
-            }else if((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000<0){
+            }else if((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("変数ポインタが0未満になってしまいます")
                 console.error("Pointer to variable would underflow.")
                 process.exit(1); 
-            }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
                 process.exit(1); 
             }else{
-                point=(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000
+                point=(new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000
             }
-        }else if(query[0][2]==4){
+        }else if(query[0][date_row[2]]==4){
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数がありません")
                 console.error("No arguments provided.")
                 process.exit(1); 
-            }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
                 process.exit(1); 
-            }else if((point+(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
+            }else if((point+(new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("変数ポインタが0未満になってしまいます")
                 console.error("Pointer to variable would underflow.")
                 process.exit(1); 
             }else{
-                point+=(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000
+                point+=(new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000
             }
-        }else if(query[0][2]==5){
+        }else if(query[0][date_row[2]]==5){
           //  変数ポインタの移動(ポインタ＝変数)
           if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))    
                 console.error("引数がありません")
                 console.error("No arguments provided.")
                 process.exit(1);
-          }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+          }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
                 process.exit(1); 
-          }else if((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000<0){
+          }else if((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("指定した変数の場所は0未満の場所です")
                 console.error("Specified memory address is negative.")
                 process.exit(1); 
           }else{
-          if(vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]==undefined){
+          if(vari[(new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("指定した変数は値がありません")
                 console.error("Specified variable is undefined.")
                 process.exit(1); 
           }
-          else if(vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000][1]<0){
+          else if(vari[(new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000][1]<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("変数ポインタが0未満になってしまいます")
                 console.error("Pointer to variable would underflow.")
                 process.exit(1); 
           }else{
-          point=vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000][1]
+          point=vari[(new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000][1]
             }
         }
-        }else if(query[0][2]==6){
+        }else if(query[0][date_row[2]]==6){
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数がありません")
                 console.error("No arguments provided.")
                 process.exit(1); 
-            }else if((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000<0){
+            }else if((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("指定した変数の場所は0未満の場所です")
                 console.error("Specified memory address is negative.")
                 process.exit(1); 
             }else{
-            vari[point]=vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]
+            vari[point]=vari[(new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000]
             }
             //引数が日付形式ではなかったら、コピー先が、unifinedになる。
-        }else if(query[0][2]==7){
+        }else if(query[0][date_row[2]]==7){
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数がありません")
                 console.error("No arguments provided.")
                 process.exit(1); 
-            }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
                 process.exit(1); 
-            }else if((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000<0){
+            }else if((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000<0){
             console.error("calcore_error:"+(i+1))
             console.error("指定した変数の場所は0未満の場所です")
             console.error("Specified memory address is negative.")
             process.exit(1); 
             }else{
-            vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]=[0,point]
+            vari[(new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000]=[0,point]
             }
-        }else if(query[0][2]==8){
+        }else if(query[0][date_row[2]]==8){
             if(vari[point]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("ポインタ先の変数に値がありません。")
@@ -1119,7 +1122,7 @@ var query=que
             }else{
                 vari[point][0]=1
             }
-        }else if(query[0][2]==9){
+        }else if(query[0][date_row[2]]==9){
             if(vari[point]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("ポインタ先の変数に値がありません。")
@@ -1128,67 +1131,68 @@ var query=que
             }else{
                 vari[point][0]=0
             }
-        }else if(query[0][2]==10){
+        }else if(query[0][date_row[2]]==10){
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数がありません")
                 console.error("No arguments provided.")
                 process.exit(1); 
-            }else if((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000<0){
+            }else if((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("指定した変数の場所は0未満の場所です")
                 console.error("Specified memory address is negative.")
                 process.exit(1); 
-            }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
                 process.exit(1)
             }
             else{
-            vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]=vari[point]
+            vari[(new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000]=vari[point]
             }
-        }else if(query[0][2]==11){
+        }else if(query[0][date_row[2]]==11){
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数がありません")
                 console.error("No arguments provided.")
                 process.exit(1)
-            }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
                 process.exit(1)
-            }else if((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000<0){
+            }else if((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("指定した変数の場所は0未満の場所です")
                 console.error("Specified memory address is negative.")
                 process.exit(1)
             }else if(vari[point]==undefined){
-                vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]=[0,0]
+                vari[(new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000]=[0,0]
             }else{
-                vari[(new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000]=[0,vari[point][0]+1]
+                vari[(new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000]=[0,vari[point][0]+1]
             }
         }
 
     return [point,vari,output,i]
 }
 
-function March(que,poi,va,out,line){
+function March(que,poi,va,out,line,date){
     var query=que
     var point=poi
     var vari=va
     var output=out
     var i=line
+    var date_row=date
 
     
-        if(query[0][2]==1){
+        if(query[0][date_row[2]]==1){
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数1が指定されていません")
                 console.error("Argument 1 is not specified.")
                 process.exit(1); 
-            }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
@@ -1198,44 +1202,44 @@ function March(que,poi,va,out,line){
                 console.error("引数2が指定されていません")
                 console.error("Argument 2 is not specified.")
                 process.exit(1); 
-            }else if(isNaN((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
                 process.exit(1); 
             }else{
-            if(((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
+            if(((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数1が指定した変数の場所は0未満の場所です")
                 console.error("The variable location specified by argument 1 is negative.")
                 process.exit(1); 
-            }else if(((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)<0){
+            }else if(((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数2が指定した変数の場所は0未満の場所です")
                 console.error("The variable location specified by argument 2 is negative.")
                 process.exit(1); 
-            }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+            }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数1が指定した変数は値がありません")
                 console.error("Variable specified by argument 1 has no value.")
                 process.exit(1); 
-            }else if(vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+            }else if(vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数2が指定した変数は値がありません")
                 console.error("Variable specified by argument 2 has no value.")
                 process.exit(1); 
             }
             else{
-            vari[point]=[0,vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)][1]+vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)][1]]                    
+            vari[point]=[0,vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]+vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]]                    
             }
         }
-        }else if(query[0][2]==2){
+        }else if(query[0][date_row[2]]==2){
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数1が指定されていません")
                 console.error("Argument 1 is not specified.")
                 process.exit(1); 
-            }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
@@ -1245,44 +1249,44 @@ function March(que,poi,va,out,line){
                 console.error("引数2が指定されていません")
                 console.error("Argument 2 is not specified.")
                 process.exit(1); 
-            }else if(isNaN((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
                 process.exit(1); 
             }else{
-            if(((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
+            if(((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数1が指定した変数の場所は0未満の場所です")
                 console.error("The variable location specified by argument 1 is negative.")
                 process.exit(1); 
-            }else if(((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)<0){
+            }else if(((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数2が指定した変数の場所は0未満の場所です")
                 console.error("The variable location specified by argument 2 is negative.")
                 process.exit(1); 
-            }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+            }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数1が指定した変数は値がありません")
                 console.error("Variable specified by argument 1 has no value.")
                 process.exit(1); 
-            }else if(vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+            }else if(vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数2が指定した変数は値がありません")
                 console.error("Variable specified by argument 2 has no value.")
                 process.exit(1); 
             }
             else{
-            vari[point]=[0,vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)][1]-vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)][1]]                    
+            vari[point]=[0,vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]-vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]]                    
             }
         }
-        }else if(query[0][2]==3){
+        }else if(query[0][date_row[2]]==3){
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数1が指定されていません")
                 console.error("Argument 1 is not specified.")
                 process.exit(1); 
-            }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
@@ -1292,44 +1296,44 @@ function March(que,poi,va,out,line){
                 console.error("引数2が指定されていません")
                 console.error("Argument 2 is not specified.")
                 process.exit(1); 
-            }else if(isNaN((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
                 process.exit(1); 
             }else{
-            if(((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
+            if(((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数1が指定した変数の場所は0未満の場所です")
                 console.error("The variable location specified by argument 1 is negative.")
                 process.exit(1); 
-            }else if(((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)<0){
+            }else if(((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数2が指定した変数の場所は0未満の場所です")
                 console.error("The variable location specified by argument 2 is negative.")
                 process.exit(1); 
-            }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+            }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数1が指定した変数は値がありません")
                 console.error("Variable specified by argument 1 has no value.")
                 process.exit(1); 
-            }else if(vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+            }else if(vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数2が指定した変数は値がありません")
                 console.error("Variable specified by argument 2 has no value.")
                 process.exit(1); 
             }
             else{
-            vari[point]=[0,vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)][1]*vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)][1]]                    
+            vari[point]=[0,vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]*vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]]                    
             }
         }
-        }else if(query[0][2]==4){
+        }else if(query[0][date_row[2]]==4){
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数1が指定されていません")
                 console.error("Argument 1 is not specified.")
                 process.exit(1); 
-            }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
@@ -1339,44 +1343,44 @@ function March(que,poi,va,out,line){
                 console.error("引数2が指定されていません")
                 console.error("Argument 2 is not specified.")
                 process.exit(1); 
-            }else if(isNaN((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
                 process.exit(1); 
             }else{
-            if(((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
+            if(((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数1が指定した変数の場所は0未満の場所です")
                 console.error("The variable location specified by argument 1 is negative.")
                 process.exit(1); 
-            }else if(((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)<0){
+            }else if(((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数2が指定した変数の場所は0未満の場所です")
                 console.error("The variable location specified by argument 2 is negative.")
                 process.exit(1); 
-            }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+            }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数1が指定した変数は値がありません")
                 console.error("Variable specified by argument 1 has no value.")
                 process.exit(1); 
-            }else if(vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+            }else if(vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数2が指定した変数は値がありません")
                 console.error("Variable specified by argument 2 has no value.")
                 process.exit(1); 
             }
             else{
-            vari[point]=[0,vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)][1]/vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)][1]]                    
+            vari[point]=[0,vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]/vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]]                    
             }
         }
-        }else if(query[0][2]==5){
+        }else if(query[0][date_row[2]]==5){
             if(query[1]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数1が指定されていません")
                 console.error("Argument 1 is not specified.")
                 process.exit(1); 
-            }else if(isNaN((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
@@ -1386,35 +1390,35 @@ function March(que,poi,va,out,line){
                 console.error("引数2が指定されていません")
                 console.error("Argument 2 is not specified.")
                 process.exit(1); 
-            }else if(isNaN((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)){
+            }else if(isNaN((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数は日付形式以外では指定できません")
                 console.error("Argument must be a valid date.")
                 process.exit(1); 
             }else{
-            if(((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)<0){
+            if(((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数1が指定した変数の場所は0未満の場所です")
                 console.error("The variable location specified by argument 1 is negative.")
                 process.exit(1); 
-            }else if(((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)<0){
+            }else if(((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)<0){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数2が指定した変数の場所は0未満の場所です")
                 console.error("The variable location specified by argument 2 is negative.")
                 process.exit(1); 
-            }else if(vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+            }else if(vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数1が指定した変数は値がありません")
                 console.error("Variable specified by argument 1 has no value.")
                 process.exit(1); 
-            }else if(vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)]==undefined){
+            }else if(vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)]==undefined){
                 console.error("calcore_error:"+(i+1))
                 console.error("引数2が指定した変数は値がありません")
                 console.error("Variable specified by argument 2 has no value.")
                 process.exit(1); 
             }
             else{
-            vari[point]=[0,vari[((new Date(query[1][0],query[1][1]-1,query[1][2])-new Date(2000, 0, 1))/86400000)][1]%vari[((new Date(query[2][0],query[2][1]-1,query[2][2])-new Date(2000, 0, 1))/86400000)][1]]                    
+            vari[point]=[0,vari[((new Date(query[1][date_row[0]],query[1][date_row[1]]-1,query[1][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]%vari[((new Date(query[2][date_row[0]],query[2][date_row[1]]-1,query[2][date_row[2]])-new Date(2000, 0, 1))/86400000)][1]]                    
             }
         }
         }
@@ -1422,43 +1426,44 @@ function March(que,poi,va,out,line){
     return [point,vari,output,i]
 }
 
-function April(que,poi,va,out,line){
+function April(que,poi,va,out,line,date){
     var query=que
     var point=poi
     var vari=va
     var output=out
     var i=line
+    var date_row=date
 
 
-    if(query[0][2]==1){
+    if(query[0][date_row[2]]==1){
         if(output!=""){
         output="";
         }
-    }else if(query[0][2]==2){
+    }else if(query[0][date_row[2]]==2){
         var today = new Date();
         vari[point]=[0,today.getFullYear()]
-    }else if(query[0][2]==3){
+    }else if(query[0][date_row[2]]==3){
         var today = new Date();
         vari[point]=[0,today.getMonth() + 1]
-    }else if(query[0][2]==4){
+    }else if(query[0][date_row[2]]==4){
         var today = new Date();
         vari[point]=[0,today.getDate()]
-    }else if(query[0][2]==5){
+    }else if(query[0][date_row[2]]==5){
         var today = new Date();
         vari[point]=[0,today.getDay()]
-    }else if(query[0][2]==6){
+    }else if(query[0][date_row[2]]==6){
         var today = new Date();
         vari[point]=[0,today.getHours()]
-    }else if(query[0][2]==7){
+    }else if(query[0][date_row[2]]==7){
         var today = new Date();
         vari[point]=[0,today.getMinutes()]
-    }else if(query[0][2]==8){
+    }else if(query[0][date_row[2]]==8){
         var today = new Date();
         vari[point]=[0,today.getSeconds()]
-    }else if(query[0][2]==9){
+    }else if(query[0][date_row[2]]==9){
         var today = new Date();
         vari[point]=[0,today.getMilliseconds()]
-    }else if(query[0][2]==10){
+    }else if(query[0][date_row[2]]==10){
         var today = new Date();
         vari[point]=[0,(new Date(today.getFullYear(),today.getMonth(),today.getDate())-new Date(2000, 0, 1))/86400000]
     }
@@ -1484,16 +1489,55 @@ var rl = readline.createInterface({
     var point=0;
     var vari=[]
     var output="";
-    var result
-    for(var i=0;i<inp.length;i++){
+    var result;
+    
+    var date_sign="";
+    var date_row=[];
+    if(inp[0]=="YYYY/MM/DD"){
+        date_sign="/"
+        date_row=[0,1,2]
+    }else if(inp[0]=="YYYY.MM.DD"){
+        date_sign="."
+        date_row=[0,1,2]
+    }else if(inp[0]=="YYYY-MM-DD"){
+        date_sign="-"
+        date_row=[0,1,2]
+    }else if(inp[0]=="MM/DD/YYYY"){
+        date_sign="/"
+        date_row=[2,0,1]
+    }else if(inp[0]=="MM.DD.YYYY"){
+        date_sign=".";
+        date_row=[2,0,1]
+    }else if(inp[0]=="MM-DD-YYYY"){
+        date_sign="-";
+        date_row=[2,0,1]
+    }else if(inp[0]=="DD/MM/YYYY"){
+        date_sign="/"
+        date_row=[2,1,0]
+    }else if(inp[0]=="DD.MM.YYYY"){
+        date_sign="."
+        date_row=[2,1,0]
+    }else if(inp[0]=="DD-MM-YYYY"){
+        date_sign="-"
+        date_row=[2,1,0]
+    }else{
+        console.error("calcore_error:"+0)
+        console.error("対応していない日付表記です")
+        console.error("Unsupported date format")
+        process.exit(1);
+    }
+
+    for(var i=1;i<inp.length;i++){
         
         var token=inp[i].split(" ")//クエリとトークン逆や
-        var query=[...Array(token.length)].map((_,j)=>(token[j].split("/")))
+        var query=[...Array(token.length)].map((_,j)=>(token[j].split(date_sign)))
+        //console.log(query)
         //console.log(query)    
         //if(query[0][0]==2020){
-            if(query[0][1]==1){
+        //console.log(query[0][date_row[0]],query[0][date_row[1]],query[0][date_row[2]],)
+            if(query[0][date_row[1]]==1){
                 //1月
-                if(query[0][2]==1){
+                if(query[0][date_row[2]]==1){
                     var rl_input= await questionAsync('> ');
                 result=January_first(query,point,vari,output,i,rl_input);
                     point=result[0]
@@ -1501,32 +1545,31 @@ var rl = readline.createInterface({
                     output=result[2]
                     i=result[3]
                 }else{
-                result=January(query,point,vari,output,i);
+                result=January(query,point,vari,output,i,date_row);
                     point=result[0]
                     vari=result[1]
                     output=result[2]
                     i=result[3]
                 }
                 //ここまで
-            }else if(query[0][1]==2){
+            }else if(query[0][date_row[1]]==2){
                 //2月
-                result=February(query,point,vari,output,i);
+                result=February(query,point,vari,output,i,date_row);
                     point=result[0]
                     vari=result[1]
                     output=result[2]
                     i=result[3]
-            }else if(query[0][1]==3){
+            }else if(query[0][date_row[1]]==3){
                 //3月
                 
-                result=March(query,point,vari,output,i);
+                result=March(query,point,vari,output,i,date_row);
                     point=result[0]
                     vari=result[1]
                     output=result[2]
                     i=result[3]
-            }else if(query[0][1]==4){
+            }else if(query[0][date_row[1]]==4){
                 //4月
-                
-                result=April(query,point,vari,output,i);
+                result=April(query,point,vari,output,i,date_row);
                     point=result[0]
                     vari=result[1]
                     output=result[2]
@@ -1536,7 +1579,7 @@ var rl = readline.createInterface({
             }
                     
         //}
-        //console.log(i,vari,point)
+        //console.log(i,vari,point,{output})
 
         await new Promise(resolve => setTimeout(resolve, 0));
 
