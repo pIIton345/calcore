@@ -23,7 +23,7 @@ var rl = readline.createInterface({
     var output="";
     var result;
 
-        var date_sign="";
+    var date_sign="";
     var date_row=[];
     if(inp[0]=="YYYY/MM/DD"){
         date_sign="/"
@@ -59,11 +59,15 @@ var rl = readline.createInterface({
         process.exit(1);
     }
 
-    
-    for(var i=0;i<inp.length;i++){
+
+    for(var i=1;i<inp.length;i++){
         
         var token=inp[i].split(" ")//クエリとトークン逆や
-        var query=[...Array(token.length)].map((_,j)=>(token[j].split("/")))
+        var query=[...Array(token.length)].map((_,j)=>(token[j].split(date_sign)))
+        for(var j=0;j<query.length;j++){
+            query[j]=[query[j][date_row[0]],query[j][date_row[1]],query[j][date_row[2]]]
+        }
+
         //console.log(query)    
         //if(query[0][0]==2020){
             if(query[0][1]==1){
