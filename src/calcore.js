@@ -21,7 +21,45 @@ var rl = readline.createInterface({
     var point=0;
     var vari=[]
     var output="";
-    var result
+    var result;
+
+        var date_sign="";
+    var date_row=[];
+    if(inp[0]=="YYYY/MM/DD"){
+        date_sign="/"
+        date_row=[0,1,2]
+    }else if(inp[0]=="YYYY.MM.DD"){
+        date_sign="."
+        date_row=[0,1,2]
+    }else if(inp[0]=="YYYY-MM-DD"){
+        date_sign="-"
+        date_row=[0,1,2]
+    }else if(inp[0]=="MM/DD/YYYY"){
+        date_sign="/"
+        date_row=[2,0,1]
+    }else if(inp[0]=="MM.DD.YYYY"){
+        date_sign=".";
+        date_row=[2,0,1]
+    }else if(inp[0]=="MM-DD-YYYY"){
+        date_sign="-";
+        date_row=[2,0,1]
+    }else if(inp[0]=="DD/MM/YYYY"){
+        date_sign="/"
+        date_row=[2,1,0]
+    }else if(inp[0]=="DD.MM.YYYY"){
+        date_sign="."
+        date_row=[2,1,0]
+    }else if(inp[0]=="DD-MM-YYYY"){
+        date_sign="-"
+        date_row=[2,1,0]
+    }else{
+        console.error("calcore_error:"+0)
+        console.error("対応していない日付表記です")
+        console.error("Unsupported date format")
+        process.exit(1);
+    }
+
+    
     for(var i=0;i<inp.length;i++){
         
         var token=inp[i].split(" ")//クエリとトークン逆や
