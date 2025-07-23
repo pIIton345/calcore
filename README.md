@@ -69,6 +69,27 @@
 プログラムが終了しても、出力用変数に値が入っていた場合、出力用変数の値が出力されます。  
 ジャンプの実行位置は、最初の行(日付表記)を1して、何番目にあたるかを指定する。
 
+## BNF
+```
+<program>::=<dateformat>"\n"|<lines>
+<dateformat>::=<yyyy_mm_dd>|<mm_dd_sep>|<dd_sep_mm_sep_yyyy>
+<yyyy_mm_dd>::="YYYY"<sep>"MM"<sep>"DD"
+<mm_dd_yyyy>::="MM"<sep>"DD"<sep>"YYYY"
+<dd_mm_yyyy>::="DD"<sep>"MM"<sep>"YYYY"
+<sep>::="/"|"."|"-"
+
+<lines>::=<line>"\n"|<line>
+<line>::=<yyyy><sep><mm><sep><dd>
+          |<mm><sep><dd><sep><yyyy>
+          |<dd><sep><mm><sep><yyyy>
+<yyyy>::=<digit><digit><digit><digit>
+<mm>::=<digit><digit>
+<dd>::=<digit><digit>
+
+<digit>::= "0" | "1" | "2" | "3" | "4"
+        | "5" | "6" | "7" | "8" | "9" ;
+```
+
 ## コード例
 ```
 YYYY/MM/DD
@@ -91,7 +112,8 @@ YYYY/MM/DD
 6  
 11  
 
-他のコード例は`example`にあります。
+Hello,world!は[こちら](/example/example_Hello,world.clc)
+他のコード例は[example](/example/)にあります。
 
 ## リポジトリ
 `src`ディレクトリのcalcore.jsがjavascriptのインタプリタです。  
