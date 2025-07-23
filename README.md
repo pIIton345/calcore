@@ -19,7 +19,7 @@
 - コードの最初に日付表記を書く。その下から、最初の日付表記のプログラムを書く
 - コマンドと引数、引数と引数の間は半角スペースを用います。
 - コマンドと次のコマンドは改行で仕切ります。
-- コメントは、先頭に#を入れます。コードの先頭以外に#を入れコメントをするのは推奨しません
+- コメントは、コメントの先頭に#を入れます。
 - コードファイルの拡張子は`.clc`です。
 
 ## コマンド一覧
@@ -78,8 +78,9 @@
 <dd_mm_yyyy>::="DD"<sep>"MM"<sep>"YYYY"
 <sep>::="/"|"."|"-"
 
-<lines>::=<line>"\n"|<line>
-<line>::=<yyyy><sep><mm><sep><dd>
+<lines>::=<line>"\n"|<lines>
+<line>::=<date>" "|<line>
+<date>::=<yyyy><sep><mm><sep><dd>
           |<mm><sep><dd><sep><yyyy>
           |<dd><sep><mm><sep><yyyy>
 <yyyy>::=<digit><digit><digit><digit>
