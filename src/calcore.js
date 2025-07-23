@@ -5,7 +5,12 @@ const Mar=require("./March.js")
 const Apr=require("./April.js")
 
 async function Main(input) {
-var rl = readline.createInterface({
+
+    var rl
+    var input_date
+    var input_i=0;
+    if(input_system!="-i"){
+        rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout
         });
@@ -15,6 +20,9 @@ var rl = readline.createInterface({
     return new Promise((resolve) => {
         rl.question(query, resolve);
          });
+    }
+    }else{
+        input_date=fs.readFileSync(0, 'utf8').split("\n");
     }
 
     const inp = input.split("\n")
@@ -73,8 +81,16 @@ var rl = readline.createInterface({
             if(query[0][1]==1){
                 //1月
                 if(query[0][2]==1){
+                    if(input_system!="-i"){
                     var rl_input= await questionAsync('> ');
-                result=Jan.January_first(query,point,vari,output,i,rl_input);
+                    }else{
+                    var rl_input=input_date[input_i]
+                    input_i++;
+                    if(rl_input==undefined){
+                        rl_input=""
+                    }
+                    }
+                    result=Jan.January_first(query,point,vari,output,i,rl_input);
                     point=result[0]
                     vari=result[1]
                     output=result[2]
@@ -120,7 +136,9 @@ var rl = readline.createInterface({
         await new Promise(resolve => setTimeout(resolve, 0));
 
     }
+    if(input_system!="-i"){
     rl.close();
+    }
     if(output!=""){
         console.log(output)
     }
@@ -130,7 +148,14 @@ var rl = readline.createInterface({
 const fs = require('fs');
 
 // コマンドライン引数からファイル名を取得（3番目の要素に入ってる）
-const filePath = process.argv[2];
+
+var input_system=""
+if(process.argv[2]=="-i"){
+    input_system="-i"
+    var filePath = process.argv[3];
+}else{
+var filePath = process.argv[2];
+}
 
 if (!filePath) {  
 console.log("welcome to Calcore.\nReading the clc file.")
