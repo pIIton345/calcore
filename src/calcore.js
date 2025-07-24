@@ -25,7 +25,7 @@ async function Main(input,is,isdata) {
         //input_date=fs.readFileSync(0, 'utf8').split("\n");
     }
 
-    const inp = input.split("\n")
+    const inp = input.split(/\r\n|\n|\r/)
     var point=0;
     var vari=[]
     var output="";
@@ -171,7 +171,7 @@ console.log("example: calcore program.clc\n")
 try {
   const data = fs.readFileSync(filePath, 'utf8');
   if(input_system=="-i"){
-  is_data=fs.readFileSync(0, "utf-8").split("\n")
+  is_data=fs.readFileSync(0, "utf-8").split(/\r\n|\n|\r/)
   }
   Main(data,input_system,is_data)
 } catch (err) {
