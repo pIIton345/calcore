@@ -118,4 +118,9 @@ Hello,world!は[こちら](/example/example_Hello,world.clc)
 
 ## 実行環境
 [`src`](/src/)ディレクトリのcalcore.jsがjavascriptのインタプリタです。  
-またビルド済み実行ファイル(アプリケーション)は[`build`](/build/)ディレクトリにあります。
+またビルド済み実行ファイル(アプリケーション)は[`build`](/build/)ディレクトリにあります。  
+## 実行方法
+calcore-win.exeの場合
+```
+./calcore-win.exe [option] [filepath]
+```

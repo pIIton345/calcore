@@ -158,7 +158,11 @@ var filePath = process.argv[2];
 }
 
 if (!filePath) {  
-console.log("welcome to Calcore.\nReading the clc file.")
+console.log("welcome to calcore.Reading the clc file.")
+console.log("usage: node calcore.js [option][clc file path] \n")
+console.log("option: -i     input from stdin")
+console.log("       (none)  Use interactive input mode\n")
+console.log("example: calcore program.clc\n")
 //console.log("-----")
 //Main(require("fs").readFileSync("/dev/stdin", "utf8"));
 }else{
