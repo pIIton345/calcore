@@ -4,10 +4,10 @@ const Feb=require("./February.js")
 const Mar=require("./March.js")
 const Apr=require("./April.js")
 
-async function Main(input) {
-
+async function Main(input,is,isdata) {
     var rl
-    var input_date
+    var input_date=isdata
+    var input_system=is
     var input_i=0;
     if(input_system!="-i"){
         rl = readline.createInterface({
@@ -22,7 +22,7 @@ async function Main(input) {
          });
     }
     }else{
-        input_date=fs.readFileSync(0, 'utf8').split("\n");
+        //input_date=fs.readFileSync(0, 'utf8').split("\n");
     }
 
     const inp = input.split("\n")
@@ -150,6 +150,7 @@ const fs = require('fs');
 // コマンドライン引数からファイル名を取得（3番目の要素に入ってる）
 
 var input_system=""
+var is_data=[]
 if(process.argv[2]=="-i"){
     input_system="-i"
     var filePath = process.argv[3];
@@ -169,7 +170,10 @@ console.log("example: calcore program.clc\n")
 
 try {
   const data = fs.readFileSync(filePath, 'utf8');
-  Main(data)
+  if(input_system=="-i"){
+  is_data=fs.readFileSync(0, "utf-8").split("\n")
+  }
+  Main(data,input_system,is_data)
 } catch (err) {
   console.error('ファイルの読み込みに失敗:', err.message);
 }
