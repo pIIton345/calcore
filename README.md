@@ -113,7 +113,7 @@ YYYY/MM/DD
 6  
 11  
 
-Hello,world!は[こちら](/example/example_Hello,world.clc)
+Hello,world!は[こちら](/example/Hello,world.clc)
 他のコード例は[`example`](/example/)にあります。
 
 ## 実行環境
