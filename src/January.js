@@ -132,6 +132,9 @@ function January(que,poi,va,out,line){
                         数値==数値
                         の場合
                     */
+                   if(query[4]==undefined){
+                        query[4]=[NaN,NaN,NaN]
+                   }
                     if(query[1]==undefined){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数1が指定されていません")
@@ -177,15 +180,9 @@ function January(que,poi,va,out,line){
                         console.error("引数3が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 3 is negative.")
                         process.exit(1); 
-                    }else if(query[4]!=undefined){
+                    }else if(!isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
                         //引数4がある場合
-                        if(isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
-                        console.error("calcore_error:"+(i+1))
-                        console.error("引数4は日付形式以外は指定できません")
-                        console.error("Argument 4 must be a valid date.")
-                        process.exit(1); 
-                        }
-                        else if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
+                        if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
                             console.error("calcore_error:"+(i+1))
                             console.error("引数4が指定した変数の場所は0未満です。")
                             console.error("The variable location specified by argument 4 is negative.")
@@ -311,6 +308,9 @@ function January(que,poi,va,out,line){
                         数値<数値
                         の場合
                     */
+                   if(query[4]==undefined){
+                        query[4]==[NaN,NaN,NaN]
+                   }
                     if(query[1]==undefined){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数1が指定されていません")
@@ -356,15 +356,9 @@ function January(que,poi,va,out,line){
                         console.error("引数3が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 3 is negative.")
                         process.exit(1); 
-                    }else if(query[4]!=undefined){
+                    }else if(!isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
                         //引数4がある場合
-                        if(isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
-                        console.error("calcore_error:"+(i+1))
-                        console.error("引数4は日付形式以外は指定できません")
-                        console.error("Argument 4 must be a valid date.")
-                        process.exit(1); 
-                        }
-                        else if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
+                        if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
                             console.error("calcore_error:"+(i+1))
                             console.error("引数4が指定した変数の場所は0未満です。")
                             console.error("The variable location specified by argument 4 is negative.")
@@ -477,6 +471,9 @@ function January(que,poi,va,out,line){
                         数値>数値
                         の場合
                     */
+                   if(query[4]==undefined){
+                        query[4]=[NaN,NaN,NaN]
+                   }
                     if(query[1]==undefined){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数1が指定されていません")
@@ -522,15 +519,9 @@ function January(que,poi,va,out,line){
                         console.error("引数3が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 3 is negative.")
                         process.exit(1); 
-                    }else if(query[4]!=undefined){
+                    }else if(!isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
                         //引数4がある場合
-                        if(isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
-                        console.error("calcore_error:"+(i+1))
-                        console.error("引数4は日付形式以外は指定できません")
-                        console.error("Argument 4 must be a valid date.")
-                        process.exit(1); 
-                        }
-                        else if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
+                        if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
                             console.error("calcore_error:"+(i+1))
                             console.error("引数4が指定した変数の場所は0未満です。")
                             console.error("The variable location specified by argument 4 is negative.")
@@ -642,6 +633,9 @@ function January(que,poi,va,out,line){
                         数値<=数値
                         の場合
                     */
+                   if(query[4]==undefined){
+                    query[4]=[NaN,NaN,NaN]
+                   }
                     if(query[1]==undefined){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数1が指定されていません")
@@ -687,15 +681,9 @@ function January(que,poi,va,out,line){
                         console.error("引数3が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 3 is negative.")
                         process.exit(1); 
-                    }else if(query[4]!=undefined){
+                    }else if(!isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
                         //引数4がある場合
-                        if(isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
-                        console.error("calcore_error:"+(i+1))
-                        console.error("引数4は日付形式以外は指定できません")
-                        console.error("Argument 4 must be a valid date.")
-                        process.exit(1); 
-                        }
-                        else if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
+                        if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
                             console.error("calcore_error:"+(i+1))
                             console.error("引数4が指定した変数の場所は0未満です。")
                             console.error("The variable location specified by argument 4 is negative.")
@@ -807,6 +795,9 @@ function January(que,poi,va,out,line){
                         数値>=数値
                         の場合
                     */
+                   if(query[4]==undefined){
+                    query[4]=[NaN,NaN,NaN]
+                   }
                     if(query[1]==undefined){
                         console.error("calcore_error:"+(i+1))
                         console.error("引数1が指定されていません")
@@ -852,15 +843,9 @@ function January(que,poi,va,out,line){
                         console.error("引数3が指定した変数の場所は0未満の場所です")
                         console.error("The variable location specified by argument 3 is negative.")
                         process.exit(1); 
-                    }else if(query[4]!=undefined){
+                    }else if(!isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
                         //引数4がある場合
-                        if(isNaN((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)){
-                        console.error("calcore_error:"+(i+1))
-                        console.error("引数4は日付形式以外は指定できません")
-                        console.error("Argument 4 must be a valid date.")
-                        process.exit(1); 
-                        }
-                        else if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
+                        if(((new Date(query[4][0],query[4][1]-1,query[4][2])-new Date(2000, 0, 1))/86400000)<0){
                             console.error("calcore_error:"+(i+1))
                             console.error("引数4が指定した変数の場所は0未満です。")
                             console.error("The variable location specified by argument 4 is negative.")
