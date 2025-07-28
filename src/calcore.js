@@ -161,7 +161,7 @@ var filePath = process.argv[2];
 if (!filePath) {  
 console.log("welcome to calcore.Reading the clc file.")
 console.log("usage: node calcore.js [option][clc file path] \n")
-console.log("option: -i     input from stdin.Ctrl+D to end input.\n")
+console.log("option: -i     input from stdin.Ctrl+D to end input.")
 console.log("       (none)  Use interactive input mode\n")
 console.log("example: calcore program.clc\n")
 //console.log("-----")
@@ -171,9 +171,23 @@ console.log("example: calcore program.clc\n")
 try {
   const data = fs.readFileSync(filePath, 'utf8');
   if(input_system=="-i"){
-  is_data=fs.readFileSync(0, "utf-8").split(/\r\n|\n|\r/)
+        process.stdin.resume();
+        process.stdin.setEncoding('utf8');
+
+        var lines = [];
+        var reader = readline.createInterface({
+          input: process.stdin,
+          output: process.stdout
+        });
+        reader.on('line', (line) => {
+          lines.push(line);
+        });
+        reader.on('close', () => {
+            Main(data,input_system,lines)
+        });
+  }else{
+  Main(data,input_system,[])
   }
-  Main(data,input_system,is_data)
 } catch (err) {
   console.error('ファイルの読み込みに失敗:', err.message);
 }
