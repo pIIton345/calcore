@@ -57,9 +57,6 @@ async function Main(input,is,isdata) {
     }else if(inp[0]=="D.M.YYYY"){
         date_sign="."
         date_row=[2,1,0]
-    }else if(inp[0]=="D-M-YYYY"){
-        date_sign="-"
-        date_row=[2,1,0]
     }else{
         console.error("calcore_error:"+0)
         console.error("対応していない日付表記です")
