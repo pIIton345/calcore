@@ -1478,31 +1478,31 @@ async function Main(input,is,isdata) {
 
     var date_sign="";
     var date_row=[];
-    if(inp[0]=="YYYY/MM/DD"){
+    if(inp[0]=="YYYY/M/D"){
         date_sign="/"
         date_row=[0,1,2]
-    }else if(inp[0]=="YYYY.MM.DD"){
+    }else if(inp[0]=="YYYY.M.D"){
         date_sign="."
         date_row=[0,1,2]
-    }else if(inp[0]=="YYYY-MM-DD"){
+    }else if(inp[0]=="YYYY-M-D"){
         date_sign="-"
         date_row=[0,1,2]
-    }else if(inp[0]=="MM/DD/YYYY"){
+    }else if(inp[0]=="M/D/YYYY"){
         date_sign="/"
         date_row=[2,0,1]
-    }else if(inp[0]=="MM.DD.YYYY"){
+    }else if(inp[0]=="M.D.YYYY"){
         date_sign=".";
         date_row=[2,0,1]
-    }else if(inp[0]=="MM-DD-YYYY"){
+    }else if(inp[0]=="M-D-YYYY"){
         date_sign="-";
         date_row=[2,0,1]
-    }else if(inp[0]=="DD/MM/YYYY"){
+    }else if(inp[0]=="D/M/YYYY"){
         date_sign="/"
         date_row=[2,1,0]
-    }else if(inp[0]=="DD.MM.YYYY"){
+    }else if(inp[0]=="D.M.YYYY"){
         date_sign="."
         date_row=[2,1,0]
-    }else if(inp[0]=="DD-MM-YYYY"){
+    }else if(inp[0]=="D-M-YYYY"){
         date_sign="-"
         date_row=[2,1,0]
     }else{
