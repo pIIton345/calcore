@@ -33,28 +33,29 @@ async function Main(input,is,isdata) {
 
     var date_sign="";
     var date_row=[];
-    if(inp[0]=="YYYY/M/D"){
+    var check_text=inp[0].split(" ")[0]
+    if(check_text=="YYYY/M/D"){
         date_sign="/"
         date_row=[0,1,2]
-    }else if(inp[0]=="YYYY.M.D"){
+    }else if(check_text=="YYYY.M.D"){
         date_sign="."
         date_row=[0,1,2]
-    }else if(inp[0]=="YYYY-M-D"){
+    }else if(check_text=="YYYY-M-D"){
         date_sign="-"
         date_row=[0,1,2]
-    }else if(inp[0]=="M/D/YYYY"){
+    }else if(check_text=="M/D/YYYY"){
         date_sign="/"
         date_row=[2,0,1]
-    }else if(inp[0]=="M.D.YYYY"){
+    }else if(check_text=="M.D.YYYY"){
         date_sign=".";
         date_row=[2,0,1]
-    }else if(inp[0]=="M-D-YYYY"){
+    }else if(check_text=="M-D-YYYY"){
         date_sign="-";
         date_row=[2,0,1]
-    }else if(inp[0]=="D/M/YYYY"){
+    }else if(check_text=="D/M/YYYY"){
         date_sign="/"
         date_row=[2,1,0]
-    }else if(inp[0]=="D.M.YYYY"){
+    }else if(check_text=="D.M.YYYY"){
         date_sign="."
         date_row=[2,1,0]
     }else{
