@@ -1508,8 +1508,8 @@ async function Main(input,is,isdata) {
         date_row=[2,1,0]
     }else{
         console.error("calcore_error:"+0)
-        console.error("対応していない日付表記です")
-        console.error("Unsupported date format")
+        console.error("対応していない日付表記か、半角空白またはコメントが入っています")
+        console.error("Unsupported date format, or there is a half-width space or comment included.")
         process.exit(1);
     }
 
