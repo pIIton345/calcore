@@ -1479,31 +1479,31 @@ async function Main(input,is,isdata) {
     var date_sign="";
     var date_row=[];
     var check_text=inp[0].split(" ")[0]
-    if(check_text=="YYYY/M/D"){
+    if(check_text=="YYYY/MM/DD"){
         date_sign="/"
         date_row=[0,1,2]
-    }else if(check_text=="YYYY.M.D"){
+    }else if(check_text=="YYYY.MM.DD"){
         date_sign="."
         date_row=[0,1,2]
-    }else if(check_text=="YYYY-M-D"){
+    }else if(check_text=="YYYY-MM-DD"){
         date_sign="-"
         date_row=[0,1,2]
-    }else if(check_text=="M/D/YYYY"){
+    }else if(check_text=="MM/DD/YYYY"){
         date_sign="/"
         date_row=[2,0,1]
-    }else if(check_text=="M.D.YYYY"){
+    }else if(check_text=="MM.DD.YYYY"){
         date_sign=".";
         date_row=[2,0,1]
-    }else if(check_text=="M-D-YYYY"){
+    }else if(check_text=="MM-DD-YYYY"){
         date_sign="-";
         date_row=[2,0,1]
-    }else if(check_text=="D/M/YYYY"){
+    }else if(check_text=="DD/MM/YYYY"){
         date_sign="/"
         date_row=[2,1,0]
-    }else if(check_text=="D.M.YYYY"){
+    }else if(check_text=="DD.MM.YYYY"){
         date_sign="."
         date_row=[2,1,0]
-    }else if(check_text=="D-M-YYYY"){
+    }else if(check_text=="DD-MM-YYYY"){
         date_sign="-"
         date_row=[2,1,0]
     }else{

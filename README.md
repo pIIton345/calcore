@@ -3,15 +3,15 @@
 ## 言語仕様
 - インタプリタ型
 - 以下の対応した日付表記の中の一つでコマンド・数値・文字を書く
-     - YYYY/M/D
-     - YYYY.M.D
-     - YYYY-M-D
-     - M/D/YYYY
-     - M.D.YYYY
-     - M-D-YYYY
-     - D/M/YYYY
-     - D.M.YYYY
-     - D-M-YYYY
+     - YYYY/MM/DD
+     - YYYY.MM.DD
+     - YYYY-MM-DD
+     - MM/DD/YYYY
+     - MM.DD.YYYY
+     - MM-DD-YYYY
+     - DD/MM/YYYY
+     - DD.MM.YYYY
+     - DD-MM-YYYY
 - コマンドはMMとDDの部分で識別しますが、コマンドを書くときはYYYYを含む表記で書く
 - 数値は2000年1月1日を0として基準に何日たったかを数値とする。(1999年以前は負の整数となる。)
 - 文字は、unicodeのコードポイント(10進数)の数値を入力することで代入できる。
@@ -72,20 +72,20 @@
 ## BNF
 ```
 <program>::=<dateformat>"\n"|<lines>
-<dateformat>::=<yyyy_m_d>|<m_d_sep>|<d_sep_m_sep_yyyy>
-<yyyy_m_d>::="YYYY"<sep>"M"<sep>"D"
-<m_d_yyyy>::="M"<sep>"D"<sep>"YYYY"
-<d_m_yyyy>::="D"<sep>"M"<sep>"YYYY"
+<dateformat>::=<yyyy_mm_dd>|<m_dd_sep>|<dd_sep_mm_sep_yyyy>
+<yyyy_mm_dd>::="YYYY"<sep>"MM"<sep>"DD"
+<mm_dd_yyyy>::="MM"<sep>"DD"<sep>"YYYY"
+<dd_mm_yyyy>::="DD"<sep>"MM"<sep>"YYYY"
 <sep>::="/"|"."|"-"
 
 <lines>::=<line>"\n"|<lines>
 <line>::=<date>" "|<line>
-<date>::=<yyyy><sep><m><sep><d>
-          |<m><sep><d><sep><yyyy>
-          |<d><sep><m><sep><yyyy>
+<date>::=<yyyy><sep><mm><sep><dd>
+          |<mm><sep><dd><sep><yyyy>
+          |<dd><sep><mm><sep><yyyy>
 <yyyy>::=<digit><digit><digit><digit>
-<m>::=<digit><digit>
-<d>::=<digit><digit>
+<mm>::=<digit><digit>
+<dd>::=<digit><digit>
 
 <digit>::= "0" | "1" | "2" | "3" | "4"
         | "5" | "6" | "7" | "8" | "9" ;
@@ -93,7 +93,7 @@
 
 ## コード例
 ```
-YYYY/M/D
+YYYY/MM/DD
 2025/2/1 2000/1/6 #変数作成（数値）　5　(ポインタ0)
 2025/2/4 2000/1/2 #変数ポインタに1を足す
 2025/2/1 2000/1/7 #変数作成(数値) 6 (ポインタ1)
@@ -108,7 +108,7 @@ YYYY/M/D
 2025/1/2	       #出力(ポインタ2)
 2025/1/3          #出力改行
 ```
-出力  
+出力 
 5  
 6  
 11  
