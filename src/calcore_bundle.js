@@ -126,14 +126,6 @@ function January(que,poi,va,out,line){
                         process.exit(1); 
                     }
                 }else if(query[0][2]==5){
-                    //条件ジャンプ
-                    /*変数がundefinedの場合の処理
-                        なし==なし
-                        数値==なし
-                        なし==数値
-                        数値==数値
-                        の場合
-                    */
                    if(query[4]==undefined){
                         query[4]=[NaN,NaN,NaN]
                    }
@@ -302,14 +294,6 @@ function January(que,poi,va,out,line){
                         }
                     }
                 }else if(query[0][2]==6){
-                    //条件ジャンプ
-                    /*変数がundefinedの場合の処理
-                        なし<なし
-                        数値<なし
-                        なし<数値
-                        数値<数値
-                        の場合
-                    */
                    if(query[4]==undefined){
                         query[4]==[NaN,NaN,NaN]
                    }
@@ -464,15 +448,6 @@ function January(que,poi,va,out,line){
                     }
 
                 }else if(query[0][2]==7){
-                    
-                    //条件ジャンプ
-                    /*変数がundefinedの場合の処理
-                        なし>なし
-                        数値>なし
-                        なし>数値
-                        数値>数値
-                        の場合
-                    */
                    if(query[4]==undefined){
                         query[4]=[NaN,NaN,NaN]
                    }
@@ -627,14 +602,6 @@ function January(que,poi,va,out,line){
                     }
                     
                 }else if(query[0][2]==8){
-                    //条件ジャンプ
-                    /*変数がundefinedの場合の処理
-                        なし<=なし
-                        数値<=なし
-                        なし<=数値
-                        数値<=数値
-                        の場合
-                    */
                    if(query[4]==undefined){
                     query[4]=[NaN,NaN,NaN]
                    }
@@ -789,14 +756,6 @@ function January(que,poi,va,out,line){
                     }
 
                 }else if(query[0][2]==9){
-                                        //条件ジャンプ
-                    /*変数がundefinedの場合の処理
-                        なし>=なし
-                        数値>=なし
-                        なし>=数値
-                        数値>=数値
-                        の場合
-                    */
                    if(query[4]==undefined){
                     query[4]=[NaN,NaN,NaN]
                    }
@@ -1467,8 +1426,6 @@ async function Main(input,is,isdata) {
         rl.question(query, resolve);
          });
     }
-    }else{
-        //input_date=fs.readFileSync(0, 'utf8').split("\n");
     }
     const inp = input.split(/\r\n|\n|\r/)
     var point=0;
@@ -1478,38 +1435,38 @@ async function Main(input,is,isdata) {
 
     var date_sign="";
     var date_row=[];
-    var check_text=inp[0]
-    if(check_text=="YYYY/MM/DD"){
+    var check_text=inp[0].split(" ")[0]
+    if(check_text=="YYYY/MM/DD"||check_text=="YYYY/M/D"){
         date_sign="/"
         date_row=[0,1,2]
-    }else if(check_text=="YYYY.MM.DD"){
+    }else if(check_text=="YYYY.MM.DD"||check_text=="YYYY.M.D"){
         date_sign="."
         date_row=[0,1,2]
-    }else if(check_text=="YYYY-MM-DD"){
+    }else if(check_text=="YYYY-MM-DD"||check_text=="YYYY.M.D"){
         date_sign="-"
         date_row=[0,1,2]
-    }else if(check_text=="MM/DD/YYYY"){
+    }else if(check_text=="MM/DD/YYYY"||check_text=="M/D/YYYY"){
         date_sign="/"
         date_row=[2,0,1]
-    }else if(check_text=="MM.DD.YYYY"){
+    }else if(check_text=="MM.DD.YYYY"||check_text=="M.D.YYYY"){
         date_sign=".";
         date_row=[2,0,1]
-    }else if(check_text=="MM-DD-YYYY"){
+    }else if(check_text=="MM-DD-YYYY"||check_text=="M-D-YYYY"){
         date_sign="-";
         date_row=[2,0,1]
-    }else if(check_text=="DD/MM/YYYY"){
+    }else if(check_text=="DD/MM/YYYY"||check_text=="D/M/YYYY"){
         date_sign="/"
         date_row=[2,1,0]
-    }else if(check_text=="DD.MM.YYYY"){
+    }else if(check_text=="DD.MM.YYYY"||check_text=="D.M.YYYY"){
         date_sign="."
         date_row=[2,1,0]
-    }else if(check_text=="DD-MM-YYYY"){
+    }else if(check_text=="DD-MM-YYYY"||check_text=="D-M-YYYY"){
         date_sign="-"
         date_row=[2,1,0]
     }else{
         console.error("calcore_error:"+0)
-        console.error("対応していない日付表記か、半角空白またはコメントが入っています")
-        console.error("Unsupported date format, or there is a half-width space or comment included.")
+        console.error("対応していない日付表記")
+        console.error("Unsupported date format")
         process.exit(1);
     }
 
@@ -1610,8 +1567,6 @@ console.log("usage: node calcore.js [option][clc file path] \n")
 console.log("option: -i     input from stdin.Ctrl+D to end input.")
 console.log("       (none)  Use interactive input mode\n")
 console.log("example: calcore program.clc\n")
-//console.log("-----")
-//Main(require("fs").readFileSync("/dev/stdin", "utf8"));
 }else{
 
 try {
@@ -1640,6 +1595,5 @@ try {
 }
 
 process.on("SIGINT", () => {
-  //console.log("\nCtrl+C を受け取りました。プログラムを終了します。");
   process.exit(0);
 });

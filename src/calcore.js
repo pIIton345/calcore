@@ -21,8 +21,6 @@ async function Main(input,is,isdata) {
         rl.question(query, resolve);
          });
     }
-    }else{
-        //input_date=fs.readFileSync(0, 'utf8').split("\n");
     }
 
     const inp = input.split(/\r\n|\n|\r/)
@@ -33,38 +31,38 @@ async function Main(input,is,isdata) {
 
     var date_sign="";
     var date_row=[];
-    var check_text=inp[0]
-    if(check_text=="YYYY/MM/DD"){
+    var check_text=inp[0].split(" ")[0]
+    if(check_text=="YYYY/MM/DD"||check_text=="YYYY/M/D"){
         date_sign="/"
         date_row=[0,1,2]
-    }else if(check_text=="YYYY.MM.DD"){
+    }else if(check_text=="YYYY.MM.DD"||check_text=="YYYY.M.D"){
         date_sign="."
         date_row=[0,1,2]
-    }else if(check_text=="YYYY-MM-DD"){
+    }else if(check_text=="YYYY-MM-DD"||check_text=="YYYY.M.D"){
         date_sign="-"
         date_row=[0,1,2]
-    }else if(check_text=="MM/DD/YYYY"){
+    }else if(check_text=="MM/DD/YYYY"||check_text=="M/D/YYYY"){
         date_sign="/"
         date_row=[2,0,1]
-    }else if(check_text=="MM.DD.YYYY"){
+    }else if(check_text=="MM.DD.YYYY"||check_text=="M.D.YYYY"){
         date_sign=".";
         date_row=[2,0,1]
-    }else if(check_text=="MM-DD-YYYY"){
+    }else if(check_text=="MM-DD-YYYY"||check_text=="M-D-YYYY"){
         date_sign="-";
         date_row=[2,0,1]
-    }else if(check_text=="DD/MM/YYYY"){
+    }else if(check_text=="DD/MM/YYYY"||check_text=="D/M/YYYY"){
         date_sign="/"
         date_row=[2,1,0]
-    }else if(check_text=="DD.MM.YYYY"){
+    }else if(check_text=="DD.MM.YYYY"||check_text=="D.M.YYYY"){
         date_sign="."
         date_row=[2,1,0]
-    }else if(check_text=="DD-MM-YYYY"){
+    }else if(check_text=="DD-MM-YYYY"||check_text=="D-M-YYYY"){
         date_sign="-"
         date_row=[2,1,0]
     }else{
         console.error("calcore_error:"+0)
-        console.error("対応していない日付表記か、半角空白またはコメントが入っています")
-        console.error("Unsupported date format, or there is a half-width space or comment included.")
+        console.error("対応していない日付表記")
+        console.error("Unsupported date format")
         process.exit(1);
     }
 
