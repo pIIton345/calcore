@@ -1478,7 +1478,7 @@ async function Main(input,is,isdata) {
 
     var date_sign="";
     var date_row=[];
-    var check_text=inp[0].split(" ")[0]
+    var check_text=inp[0]
     if(check_text=="YYYY/MM/DD"){
         date_sign="/"
         date_row=[0,1,2]
