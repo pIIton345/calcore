@@ -3,16 +3,16 @@
 ## 言語仕様
 - インタプリタ型
 - 以下の対応した日付表記の中の一つでコマンド・数値・文字を書く
-     - YYYY/MM/DD
-     - YYYY.MM.DD
-     - YYYY-MM-DD
-     - MM/DD/YYYY
-     - MM.DD.YYYY
-     - MM-DD-YYYY
-     - DD/MM/YYYY
-     - DD.MM.YYYY
-     - DD-MM-YYYY
-- コマンドはMMとDDの部分で識別しますが、コマンドを書くときはYYYYを含む表記で書く
+     - `YYYY/MM/DD`・`YYYY/M/D` 
+     - `YYYY.MM.DD`・`YYYY.M.D`
+     - `YYYY-MM-DD`・`YYYY-M-D`
+     - `MM/DD/YYYY`・`M/D/YYYY`
+     - `MM.DD.YYYY`・`M.D.YYYY`
+     - `MM-DD-YYYY`・`M-D-YYYY`
+     - `DD/MM/YYYY`・`D/M/YYYY`
+     - `DD.MM.YYYY`・`D.M.YYYY`
+     - `DD-MM-YYYY`・`D-M-YYYY`
+- コマンドはMMとDDまたはMとDの部分で識別しますが、コマンドを書くときはYYYYを含む表記で書く
 - 数値は2000年1月1日を0として基準に何日たったかを数値とする。(1999年以前は負の整数となる。)
 - 文字は、unicodeのコードポイント(10進数)の数値を入力することで代入できる。
 - 変数はメモリテープで扱います。
@@ -23,7 +23,7 @@
 - コードファイルの拡張子は`.clc`です。
 
 ## コマンド一覧
-|命令（MM/DD）|動作|説明|引数|
+|命令（M/D）|動作|説明|引数|
 |---|----|---|---|
 |1月|||
 |1/1|入力|入力から1行を読み込み、一文字ずつunicodeのコードポイントに変換し、変数に格納する。各文字を格納するたび、ポインタを一つずつ進めながら順に書き込む。書き込みが終了すると、ポインタは元の位置に戻る|*/1/1 （引数なし）|
@@ -72,10 +72,14 @@
 ## BNF
 ```
 <program>::=<dateformat>"\n"|<lines>
-<dateformat>::=<yyyy_mm_dd>|<m_dd_sep>|<dd_sep_mm_sep_yyyy>
+<dateformat>::=<yyyy_mm_dd>|<mm_dd_yyyy>|<d_m_yyyy>
+                |<yyyy_m_d>|<m_d_yyyy>|<d_m_yyyy>
 <yyyy_mm_dd>::="YYYY"<sep>"MM"<sep>"DD"
 <mm_dd_yyyy>::="MM"<sep>"DD"<sep>"YYYY"
 <dd_mm_yyyy>::="DD"<sep>"MM"<sep>"YYYY"
+<yyyy_m_d>::="YYYY"<sep>"M"<sep>"D"
+<m_d_yyyy>::="M"<sep>"D"<sep>"YYYY"
+<d_m_yyyy>::="D"<sep>"M"<sep>"YYYY"
 <sep>::="/"|"."|"-"
 
 <lines>::=<line>"\n"|<lines>
@@ -83,12 +87,20 @@
 <date>::=<yyyy><sep><mm><sep><dd>
           |<mm><sep><dd><sep><yyyy>
           |<dd><sep><mm><sep><yyyy>
+          |<yyyy><sep><m><sep><d>
+          |<m><sep><d><sep><yyyy>
+          |<d><sep><m><sep><yyyy>
 <yyyy>::=<digit><digit><digit><digit>
 <mm>::=<digit><digit>
 <dd>::=<digit><digit>
+<m>::=<digit2>
+<d>::=<digit><digit>
 
 <digit>::= "0" | "1" | "2" | "3" | "4"
         | "5" | "6" | "7" | "8" | "9" ;
+<digit2>::="0" | "1" | "2" | "3" | "4"
+        | "5" | "6" | "7" | "8" | "9" 
+        | "10" | "11" |"12" 
 ```
 
 ## コード例
