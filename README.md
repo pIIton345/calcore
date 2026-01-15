@@ -1,3 +1,4 @@
+[説明書(日本語)](https://github.com/pIIton345/calcore/blob/main/README.md) [readme(EN)](https://github.com/pIIton345/calcore/blob/main/README_EN.md)
 # calcore
  calcoreは日付表記を用いて書く難解プログラミング言語です。  
 ## 言語仕様

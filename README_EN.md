@@ -1,3 +1,4 @@
+[説明書(日本語)](https://github.com/pIIton345/calcore/blob/main/README.md) [readme(EN)](https://github.com/pIIton345/calcore/blob/main/README_EN.md)
 # calcore
 
 `calcore` is an esoteric programming language that uses date notations for writing code.
