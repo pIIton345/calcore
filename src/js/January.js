@@ -32,27 +32,7 @@ function January(que,poi,va,out,line){
     var vari=va
     var output=out
     var i=line
-                if(query[0][2]==1){
-                    //入力
-                    /*
-                        if(output!=""){
-                        console.log(output)
-                        }
-                        var point_before=point
-                            const answer = await questionAsync('> ');
-                            var ans=`${answer}`;
-                            if(String(Number(ans))===ans){
-                                vari[point]=[0,Number(ans)]                                
-                            }else{
-                                var codes = [...ans].map(char => char.codePointAt(0));
-                                for(var k=0;k<codes.length;k++){
-                                    vari[point]=[1,codes[k]]
-                                    point++;
-                                }
-                                point=point_before
-                            }
-                      */          
-                }else if(query[0][2]==2){
+        if(query[0][2]==2){
                     //出力
                     //console.log(vari[point])
                     if(vari[point]!=undefined){

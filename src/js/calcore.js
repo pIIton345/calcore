@@ -3,6 +3,8 @@ const Jan=require("./January.js")
 const Feb=require("./February.js")
 const Mar=require("./March.js")
 const Apr=require("./April.js")
+let interrupted = false;
+process.once('SIGINT', () => { interrupted = true; });
 
 async function Main(input,is,isdata) {
     var rl
@@ -14,6 +16,7 @@ async function Main(input,is,isdata) {
         input: process.stdin,
         output: process.stdout
         });
+    rl.on('SIGINT', () => { try { rl.close(); } catch (e) {} interrupted = true; });
     function questionAsync(query) {
 
     // Promise ラップした question
@@ -132,7 +135,13 @@ async function Main(input,is,isdata) {
         //}
         //console.log(i,vari,point)
 
-
+        if (interrupted) {
+            if(input_system!="-i"){
+                try { rl.close(); } catch (e) {}
+            }
+            process.exit(130);
+        }
+        await new Promise(resolve => setImmediate(resolve));
     }
     if(input_system!="-i"){
     rl.close();
@@ -177,6 +186,7 @@ try {
           input: process.stdin,
           output: process.stdout
         });
+        reader.on('SIGINT', () => { try { reader.close(); } catch (e) {} interrupted = true; });
         reader.on('line', (line) => {
           lines.push(line);
         });
