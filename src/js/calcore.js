@@ -1,4 +1,4 @@
-var readline = require('readline');
+const readline = require('readline');
 const Jan=require("./January.js")
 const Feb=require("./February.js")
 const Mar=require("./March.js")
@@ -7,10 +7,10 @@ let interrupted = false;
 process.once('SIGINT', () => { interrupted = true; });
 
 async function Main(input,is,isdata) {
-    var rl
-    var input_date=isdata
-    var input_system=is
-    var input_i=0;
+    let rl;
+    let input_date=isdata;
+    let input_system=is;
+    let input_i=0;
     if(input_system!="-i"){
         rl = readline.createInterface({
         input: process.stdin,
@@ -22,19 +22,19 @@ async function Main(input,is,isdata) {
     // Promise ラップした question
     return new Promise((resolve) => {
         rl.question(query, resolve);
-         });
+        });
     }
     }
 
     const inp = input.split(/\r\n|\n|\r/)
-    var point=0;
-    var vari=[]
-    var output="";
-    var result;
+    let point=0;
+    let vari=[]
+    let output="";
+    let result;
 
-    var date_sign="";
-    var date_row=[];
-    var check_text=inp[0].split(" ")[0]
+    let date_sign="";
+    let date_row=[];
+    let check_text=inp[0].split(" ")[0]
     if(check_text=="YYYY/MM/DD"||check_text=="YYYY/M/D"){
         date_sign="/"
         date_row=[0,1,2]
@@ -69,12 +69,14 @@ async function Main(input,is,isdata) {
         process.exit(1);
     }
 
-
-    for(var i=1;i<inp.length;i++){
+    let token;
+    let query;
+    let rl_input;
+    for(let i=1;i<inp.length;i++){
         
-        var token=inp[i].split(" ")//クエリとトークン逆や
-        var query=[...Array(token.length)].map((_,j)=>(token[j].split(date_sign)))
-        for(var j=0;j<query.length;j++){
+        token=inp[i].split(" ")//クエリとトークン逆や
+        query=[...Array(token.length)].map((_,j)=>(token[j].split(date_sign)))
+        for(let j=0;j<query.length;j++){
             query[j]=[query[j][date_row[0]],query[j][date_row[1]],query[j][date_row[2]]]
         }
 
@@ -84,9 +86,9 @@ async function Main(input,is,isdata) {
                 //1月
                 if(query[0][2]==1){
                     if(input_system!="-i"){
-                    var rl_input= await questionAsync('> ');
+                    rl_input= await questionAsync('> ');
                     }else{
-                    var rl_input=input_date[input_i]
+                    rl_input=input_date[input_i]
                     input_i++;
                     if(rl_input==undefined){
                         rl_input=""
@@ -156,13 +158,13 @@ const fs = require('fs');
 
 // コマンドライン引数からファイル名を取得（3番目の要素に入ってる）
 
-var input_system=""
-var is_data=[]
+let input_system=""
+let filePath;
 if(process.argv[2]=="-i"){
     input_system="-i"
-    var filePath = process.argv[3];
+    filePath = process.argv[3];
 }else{
-var filePath = process.argv[2];
+    filePath = process.argv[2];
 }
 
 if (!filePath) {  
@@ -181,8 +183,8 @@ try {
         process.stdin.resume();
         process.stdin.setEncoding('utf8');
 
-        var lines = [];
-        var reader = readline.createInterface({
+        let lines = [];
+        let reader = readline.createInterface({
           input: process.stdin,
           output: process.stdout
         });

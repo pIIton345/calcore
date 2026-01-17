@@ -1,9 +1,9 @@
 function February(que,poi,va,out,line){
-var query=que
-    var point=poi
-    var vari=va
-    var output=out
-    var i=line
+let query=que
+    let point=poi
+    let vari=va
+    let output=out
+    let i=line
 
     
         if(query[0][2]==1){

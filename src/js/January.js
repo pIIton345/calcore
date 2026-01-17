@@ -1,20 +1,20 @@
 function January_first(que,poi,va,out,line,input){
     //1/1だけ
-     var query=que
-    var point=poi
-    var vari=va
-    var output=out
-    var i=line
+     let query=que
+    let point=poi
+    let vari=va
+    letoutput=out
+    leti=line
     
     if(output!=""){
     console.log(output)
     output="";
     }
-    var point_before=point
+    letpoint_before=point
         const answer = input;
-        var ans=`${answer}`;
-            var codes = [...ans].map(char => char.codePointAt(0));
-            for(var k=0;k<codes.length;k++){
+        letans=`${answer}`;
+            letcodes = [...ans].map(char => char.codePointAt(0));
+            for(letk=0;k<codes.length;k++){
                 vari[point]=[1,codes[k]]
                 point++;
             }
@@ -27,11 +27,11 @@ function January_first(que,poi,va,out,line,input){
 function January(que,poi,va,out,line){
 
     
-    var query=que
-    var point=poi
-    var vari=va
-    var output=out
-    var i=line
+    let query=que
+    let point=poi
+    let vari=va
+    let output=out
+    let i=line
         if(query[0][2]==2){
                     //出力
                     //console.log(vari[point])
