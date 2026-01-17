@@ -132,7 +132,6 @@ async function Main(input,is,isdata) {
         //}
         //console.log(i,vari,point)
 
-        await new Promise(resolve => setTimeout(resolve, 0));
 
     }
     if(input_system!="-i"){
@@ -191,8 +190,3 @@ try {
   console.error('ファイルの読み込みに失敗:', err.message);
 }
 }
-
-process.on("SIGINT", () => {
-  //console.log("\nCtrl+C を受け取りました。プログラムを終了します。");
-  process.exit(0);
-});
