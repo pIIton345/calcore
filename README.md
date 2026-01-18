@@ -129,16 +129,10 @@ YYYY/M/D
 Hello,world!は[こちら](/example/Hello,world.clc)
 他のコード例は[`example`](/example/)にあります。
 
-## 実行環境
-[`src`](/src/)ディレクトリのcalcore.jsがjavascriptのインタプリタです。  
-またビルド済み実行ファイル(アプリケーション)は[`build`](/build/)ディレクトリにあります。  
-## 実行方法
-jsインタプリタの場合
+## 使い方
+
+```bash
+node ./dist/calcore.js [option] [filepath]
 ```
-node ./src/calcore.js [option] [filepath]
-```
-calcore-win.exeの場合
-```
-./calcore-win.exe [option] [filepath]
-```
+
 `[filepath]`を入力せずに、実行すると使用方法やオプションが表示されます。

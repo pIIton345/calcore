@@ -140,23 +140,9 @@ Output:
 `Hello,world!` is [here](/example/Hello,world.clc).
 Other code examples are available in the [`example`](/example/) directory.
 
-## Runtime environment
-
-`src/calcore.js` in the [`src`](/src/) directory is the JavaScript interpreter.
-A built executable (application) is available in the [`build`](/build/) directory.
-
 ## How to run
-
-For the JS interpreter:
-
-```
-node ./src/calcore.js [option] [filepath]
-```
-
-For `calcore-win.exe`:
-
-```
-./calcore-win.exe [option] [filepath]
+```bash
+node ./dist/calcore.js [option] [filepath]
 ```
 
 If you run without specifying `[filepath]`, usage information and options will be displayed.

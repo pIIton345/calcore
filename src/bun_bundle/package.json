@@ -1,7 +1,0 @@
-{
-  "name": "calcore",
-  "version": "1.0.0",
-  "bin": "calcore.js",
-  "type": "module",
-  "scripts": {}
-}
