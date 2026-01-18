@@ -1,0 +1,9 @@
+{
+    "name":"calcore",
+    "version": "1.0.1",
+    "main":"dist/calcore.js",
+    "scripts":{
+        "start":"node dist/calcore.js"
+    }
+
+}
