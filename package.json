@@ -7,7 +7,8 @@
     },
     "main":"dist/calcore.js",
     "scripts":{
-        "start":"node dist/calcore.js"
+        "start":"node dist/calcore.js",
+	"dev":"node dist/calcore.js"
     }
 
 }
