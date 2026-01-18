@@ -1,6 +1,10 @@
 {
     "name":"calcore",
     "version": "1.0.1",
+    "type":"module",
+    "bin":{
+        "calcore":"./dist/calcore.js"
+    },
     "main":"dist/calcore.js",
     "scripts":{
         "start":"node dist/calcore.js"
