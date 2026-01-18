@@ -138,7 +138,8 @@ Other code examples are available in the [`example`](/example/) directory.
 
 ## How to run
 ```bash
-node ./dist/calcore.js [option] [filepath]
+npm install pIIton345/calcore 
+calcore [option] [filepath]
 ```
 
 If you run without specifying `[filepath]`, usage information and options will be displayed.

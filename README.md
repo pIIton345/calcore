@@ -131,7 +131,8 @@ Hello,world!は[こちら](/example/Hello,world.clc)
 ## 使い方
 
 ```bash
-node ./dist/calcore.js [option] [filepath]
+npm install pIIton345/calcore 
+calcore [option] [filepath]
 ```
 
 `[filepath]`を入力せずに、実行すると使用方法やオプションが表示されます。
