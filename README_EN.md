@@ -7,21 +7,20 @@
 
 * Interpreter-based.
 * Commands, numbers, and characters are written using **one of** the supported date notations below:
-
-  * `YYYY/MM/DD` - `YYYY/M/D`
-  * `YYYY.MM.DD` - `YYYY.M.D`
-  * `YYYY-MM-DD` - `YYYY-M-D`
-  * `MM/DD/YYYY` - `M/D/YYYY`
-  * `MM.DD.YYYY` - `M.D.YYYY`
-  * `MM-DD-YYYY` - `M-D-YYYY`
-  * `DD/MM/YYYY` - `D/M/YYYY`
-  * `DD.MM.YYYY` - `D.M.YYYY`
-  * `DD-MM-YYYY` - `D-M-YYYY`
+  * `YYYY/MM/DD` / `YYYY/M/D`
+  * `YYYY.MM.DD` / `YYYY.M.D`
+  * `YYYY-MM-DD` / `YYYY-M-D`
+  * `MM/DD/YYYY` / `M/D/YYYY`
+  * `MM.DD.YYYY` / `M.D.YYYY`
+  * `MM-DD-YYYY` / `M-D-YYYY`
+  * `DD/MM/YYYY` / `D/M/YYYY`
+  * `DD.MM.YYYY` / `D.M.YYYY`
+  * `DD-MM-YYYY` / `D-M-YYYY`
+* Write the date notation format to be used on the first line of the code file. From the line below, write the program using that date notation format.
 * Commands are identified by the `MM` and `DD` (or `M` and `D`) parts. **When writing commands, use a date format that includes `YYYY`.**
 * Numeric values are represented as the number of days elapsed since **2000-01-01**, which is treated as `0`. (Dates before 2000-01-01 become negative integers.)
 * Characters are assigned by inputting the Unicode code point (decimal).
 * Variables are managed on a memory tape.
-* At the start of the code, write the date-format you will use. From the next line onward, write the program using that initial date-format.
 * Use a single ASCII space between a command and its arguments, and between arguments.
 * Separate commands (i.e., consecutive commands) with newlines.
 * Comments begin with ` #` (a single ASCII space followed by `#`) at the start of the comment.
