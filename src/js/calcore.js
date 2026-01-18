@@ -1,8 +1,8 @@
 const readline = require('readline');
-const Jan=require("./January.js")
-const Feb=require("./February.js")
-const Mar=require("./March.js")
-const Apr=require("./April.js")
+const Jan=require("./January.js");
+const Feb=require("./February.js");
+const Mar=require("./March.js");
+const Apr=require("./April.js");
 let interrupted = false;
 process.once('SIGINT', () => { interrupted = true; });
 
@@ -26,46 +26,46 @@ async function Main(input,is,isdata) {
     }
     }
 
-    const inp = input.split(/\r\n|\n|\r/)
+    const inp = input.split(/\r\n|\n|\r/);
     let point=0;
-    let vari=[]
+    let vari=[];
     let output="";
     let result;
 
     let date_sign="";
     let date_row=[];
-    let check_text=inp[0].split(" ")[0]
+    let check_text=inp[0].split(" ")[0];
     if(check_text=="YYYY/MM/DD"||check_text=="YYYY/M/D"){
-        date_sign="/"
-        date_row=[0,1,2]
+        date_sign="/";
+        date_row=[0,1,2];
     }else if(check_text=="YYYY.MM.DD"||check_text=="YYYY.M.D"){
-        date_sign="."
-        date_row=[0,1,2]
+        date_sign=".";
+        date_row=[0,1,2];
     }else if(check_text=="YYYY-MM-DD"||check_text=="YYYY.M.D"){
-        date_sign="-"
-        date_row=[0,1,2]
+        date_sign="-";
+        date_row=[0,1,2];
     }else if(check_text=="MM/DD/YYYY"||check_text=="M/D/YYYY"){
-        date_sign="/"
-        date_row=[2,0,1]
+        date_sign="/";
+        date_row=[2,0,1];
     }else if(check_text=="MM.DD.YYYY"||check_text=="M.D.YYYY"){
         date_sign=".";
-        date_row=[2,0,1]
+        date_row=[2,0,1];
     }else if(check_text=="MM-DD-YYYY"||check_text=="M-D-YYYY"){
         date_sign="-";
-        date_row=[2,0,1]
+        date_row=[2,0,1];
     }else if(check_text=="DD/MM/YYYY"||check_text=="D/M/YYYY"){
-        date_sign="/"
-        date_row=[2,1,0]
+        date_sign="/";
+        date_row=[2,1,0];
     }else if(check_text=="DD.MM.YYYY"||check_text=="D.M.YYYY"){
-        date_sign="."
-        date_row=[2,1,0]
+        date_sign=".";
+        date_row=[2,1,0];
     }else if(check_text=="DD-MM-YYYY"||check_text=="D-M-YYYY"){
-        date_sign="-"
-        date_row=[2,1,0]
+        date_sign="-";
+        date_row=[2,1,0];
     }else{
-        console.error("calcore_error:"+0)
-        console.error("対応していない日付表記")
-        console.error("Unsupported date format")
+        console.error("calcore_error:"+0);
+        console.error("対応していない日付表記");
+        console.error("Unsupported date format");
         process.exit(1);
     }
 
@@ -74,13 +74,13 @@ async function Main(input,is,isdata) {
     let rl_input;
     for(let i=1;i<inp.length;i++){
         
-        token=inp[i].split(" ")//クエリとトークン逆や
-        query=[...Array(token.length)].map((_,j)=>(token[j].split(date_sign)))
+        token=inp[i].split(" ");    //クエリとトークン逆や
+        query=[...Array(token.length)].map((_,j)=>(token[j].split(date_sign)));
         for(let j=0;j<query.length;j++){
-            query[j]=[query[j][date_row[0]],query[j][date_row[1]],query[j][date_row[2]]]
+            query[j]=[query[j][date_row[0]],query[j][date_row[1]],query[j][date_row[2]]];
         }
 
-        //console.log(query)    
+        //console.log(query);
         //if(query[0][0]==2020){
             if(query[0][1]==1){
                 //1月
@@ -88,51 +88,54 @@ async function Main(input,is,isdata) {
                     if(input_system!="-i"){
                     rl_input= await questionAsync('> ');
                     }else{
-                    rl_input=input_date[input_i]
+                    rl_input=input_date[input_i];
                     input_i++;
                     if(rl_input==undefined){
-                        rl_input=""
+                        rl_input="";
                     }
                     }
                     result=Jan.January_first(query,point,vari,output,i,rl_input);
-                    point=result[0]
-                    vari=result[1]
-                    output=result[2]
-                    i=result[3]
+                    point=result[0];
+                    vari=result[1];
+                    output=result[2];
+                    i=result[3];
                 }else{
                 result=Jan.January(query,point,vari,output,i);
-                    point=result[0]
-                    vari=result[1]
-                    output=result[2]
-                    i=result[3]
+                point=result[0];
+                vari=result[1];
+                output=result[2];
+                i=result[3];
                 }
                 //ここまで
             }else if(query[0][1]==2){
                 //2月
                 result=Feb.February(query,point,vari,output,i);
-                    point=result[0]
-                    vari=result[1]
-                    output=result[2]
-                    i=result[3]
+                point=result[0];
+                vari=result[1];
+                output=result[2];
+                i=result[3];
             }else if(query[0][1]==3){
                 //3月
                 
                 result=Mar.March(query,point,vari,output,i);
-                    point=result[0]
-                    vari=result[1]
-                    output=result[2]
-                    i=result[3]
+                point=result[0];
+                vari=result[1];
+                output=result[2];
+                i=result[3];
             }else if(query[0][1]==4){
                 //4月
                 
                 result=Apr.April(query,point,vari,output,i);
-                    point=result[0]
-                    vari=result[1]
-                    output=result[2]
-                    i=result[3]
-            }else{
+                point=result[0];
+                vari=result[1];
+                output=result[2];
+                i=result[3];
+            }
+            /*
+            else{
 
             }
+            */
                     
         //}
         //console.log(i,vari,point)
@@ -149,37 +152,36 @@ async function Main(input,is,isdata) {
     rl.close();
     }
     if(output!=""){
-        console.log(output)
+        console.log(output);
     }
-   
 }       
 
 const fs = require('fs');
 
 // コマンドライン引数からファイル名を取得（3番目の要素に入ってる）
 
-let input_system=""
+let input_system="";
 let filePath;
 if(process.argv[2]=="-i"){
-    input_system="-i"
+    input_system="-i";
     filePath = process.argv[3];
 }else{
     filePath = process.argv[2];
 }
 
 if (!filePath) {  
-console.log("welcome to calcore.Reading the clc file.")
-console.log("usage: node calcore.js [option][clc file path] \n")
-console.log("option: -i     input from stdin.Ctrl+D to end input.")
-console.log("       (none)  Use interactive input mode\n")
-console.log("example: calcore program.clc\n")
+console.log("welcome to calcore.Reading the clc file.");
+console.log("usage: node calcore.js [option][clc file path] \n");
+console.log("option: -i     input from stdin.Ctrl+D to end input.");
+console.log("       (none)  Use interactive input mode\n");
+console.log("example: calcore program.clc\n");
 //console.log("-----")
 //Main(require("fs").readFileSync("/dev/stdin", "utf8"));
 }else{
 
 try {
-  const data = fs.readFileSync(filePath, 'utf8');
-  if(input_system=="-i"){
+    const data = fs.readFileSync(filePath, 'utf8');
+    if(input_system=="-i"){
         process.stdin.resume();
         process.stdin.setEncoding('utf8');
 
@@ -196,7 +198,7 @@ try {
             Main(data,input_system,lines)
         });
   }else{
-  Main(data,input_system,[])
+  Main(data,input_system,[]);
   }
 } catch (err) {
   console.error('ファイルの読み込みに失敗:', err.message);
