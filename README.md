@@ -73,8 +73,7 @@
 ## BNF
 ```
 <program>::=<dateformat>"\n"|<lines>
-<dateformat>::=<yyyy_mm_dd>|<mm_dd_yyyy>|<d_m_yyyy>
-                |<yyyy_m_d>|<m_d_yyyy>|<d_m_yyyy>
+<dateformat>::=<yyyy_mm_dd>|<mm_dd_yyyy>|<d_m_yyyy>|<yyyy_m_d>|<m_d_yyyy>|<d_m_yyyy>
 <yyyy_mm_dd>::="YYYY"<sep>"MM"<sep>"DD"
 <mm_dd_yyyy>::="MM"<sep>"DD"<sep>"YYYY"
 <dd_mm_yyyy>::="DD"<sep>"MM"<sep>"YYYY"
