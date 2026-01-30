@@ -3,3 +3,5 @@ test1.clc
 コード置くだけ.js
 
 bench/
+
+src/python/__pycache__/
